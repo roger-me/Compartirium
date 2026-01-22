@@ -20,18 +20,28 @@ export interface Product {
 }
 
 export const categories = [
-  { slug: 'libros', name: 'Libros de texto', icon: 'book-open' },
-  { slug: 'juegos', name: 'Juegos educativos', icon: 'puzzle-piece' },
-  { slug: 'material', name: 'Material didáctico', icon: 'cube' },
-  { slug: 'mobiliario', name: 'Mobiliario', icon: 'armchair' },
-  { slug: 'dispositivos', name: 'Dispositivos', icon: 'device-tablet' },
-  { slug: 'packs', name: 'Packs', icon: 'package' },
+  { slug: 'libros', name: { ca: 'Llibres de text', es: 'Libros de texto' }, icon: 'book-open' },
+  { slug: 'juegos', name: { ca: 'Jocs educatius', es: 'Juegos educativos' }, icon: 'puzzle-piece' },
+  { slug: 'material', name: { ca: 'Material didàctic', es: 'Material didáctico' }, icon: 'cube' },
+  { slug: 'mobiliario', name: { ca: 'Mobiliari', es: 'Mobiliario' }, icon: 'armchair' },
+  { slug: 'dispositivos', name: { ca: 'Dispositius', es: 'Dispositivos' }, icon: 'device-tablet' },
+  { slug: 'packs', name: { ca: 'Packs', es: 'Packs' }, icon: 'package' },
 ];
 
 export const stages = [
-  { slug: 'infantil', name: 'Infantil', ageRange: '0-6 años' },
-  { slug: 'primaria', name: 'Primaria', ageRange: '6-12 años' },
+  { slug: 'infantil', name: { ca: 'Infantil', es: 'Infantil' }, ageRange: { ca: '0-6 anys', es: '0-6 años' } },
+  { slug: 'primaria', name: { ca: 'Primària', es: 'Primaria' }, ageRange: { ca: '6-12 anys', es: '6-12 años' } },
 ];
+
+// Helper to get category name by language
+export function getCategoryName(category: typeof categories[0], lang: 'ca' | 'es'): string {
+  return category.name[lang];
+}
+
+// Helper to get stage name by language
+export function getStageName(stage: typeof stages[0], lang: 'ca' | 'es'): string {
+  return stage.name[lang];
+}
 
 export const products: Product[] = [
   // LIBROS

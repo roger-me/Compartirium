@@ -1,21 +1,31 @@
 ---
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  lang?: 'ca' | 'es';
+}
+
+const { lang: propLang } = Astro.props;
+const lang = propLang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   navegacion: [
-    { href: '/catalogo', label: 'Catálogo' },
-    { href: '/como-funciona', label: 'Cómo funciona' },
-    { href: '/quienes-somos', label: 'Quiénes somos' },
+    { href: getLocalizedPath('catalogo', lang), label: t('nav.catalogo') },
+    { href: getLocalizedPath('com-funciona', lang), label: t('nav.comoFunciona') },
+    { href: getLocalizedPath('qui-som', lang), label: t('nav.quienesSomos') },
   ],
   cuenta: [
-    { href: '/cliente', label: 'Mi cuenta' },
-    { href: '/cliente/alquileres', label: 'Mis alquileres' },
-    { href: '/cliente/programar', label: 'Programar' },
+    { href: getLocalizedPath('client', lang), label: t('footer.miCuenta') },
+    { href: getLocalizedPath('client/lloguers', lang), label: t('footer.misAlquileres') },
+    { href: getLocalizedPath('client/programar', lang), label: t('footer.programar') },
   ],
   legal: [
-    { href: '#', label: 'Política de privacidad' },
-    { href: '#', label: 'Términos y condiciones' },
-    { href: '#', label: 'Política de cookies' },
+    { href: '#', label: t('footer.privacidad') },
+    { href: '#', label: t('footer.terminos') },
+    { href: '#', label: t('footer.cookies') },
   ],
 };
 ---
@@ -31,13 +41,13 @@ const footerLinks = {
         </div>
         <p class="footer-text-muted mb-4 italic">"Més que compartir"</p>
         <p class="footer-text-light text-sm">
-          Material educativo en alquiler para escuelas y familias. Sostenible, asequible, circular.
+          {t('footer.tagline')}
         </p>
       </div>
 
       <!-- Navigation -->
       <div>
-        <h4 class="font-semibold mb-4">Navegación</h4>
+        <h4 class="font-semibold mb-4">{t('footer.navegacion')}</h4>
         <ul class="space-y-2">
           {footerLinks.navegacion.map(link => (
             <li>
@@ -51,7 +61,7 @@ const footerLinks = {
 
       <!-- Account -->
       <div>
-        <h4 class="font-semibold mb-4">Mi cuenta</h4>
+        <h4 class="font-semibold mb-4">{t('footer.miCuenta')}</h4>
         <ul class="space-y-2">
           {footerLinks.cuenta.map(link => (
             <li>
@@ -65,7 +75,7 @@ const footerLinks = {
 
       <!-- Contact -->
       <div>
-        <h4 class="font-semibold mb-4">Contacto</h4>
+        <h4 class="font-semibold mb-4">{t('footer.contacto')}</h4>
         <ul class="space-y-3 footer-text-light">
           <li class="flex items-center gap-2">
             <i class="ph ph-envelope"></i>
@@ -99,7 +109,7 @@ const footerLinks = {
     <!-- Bottom -->
     <div class="border-t border-white/20 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="footer-text-muted text-sm">
-        © {currentYear} Compartirium. Todos los derechos reservados.
+        © {currentYear} Compartirium. {t('footer.derechos')}
       </p>
       <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-sm">
         {footerLinks.legal.map(link => (
@@ -118,28 +128,28 @@ const footerLinks = {
   }
 
   .footer-text-light {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85) !important;
   }
 
   .footer-text-muted {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7) !important;
   }
 
   .footer-link {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85) !important;
     transition: color 0.2s ease;
   }
 
   .footer-link:hover {
-    color: white;
+    color: white !important;
   }
 
   .footer-link-muted {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.7) !important;
     transition: color 0.2s ease;
   }
 
   .footer-link-muted:hover {
-    color: white;
+    color: white !important;
   }
 </style>

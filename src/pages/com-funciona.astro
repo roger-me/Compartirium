@@ -1,22 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+
+const lang = 'ca';
+const t = useTranslations(lang);
 ---
 
-<Layout title="Cómo funciona">
+<Layout title={t('comoFunciona.title')} lang={lang}>
   <!-- Hero -->
-  <section class="py-16 bg-[var(--color-cream-light)]">
+  <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-semibold mb-6">Cómo funciona Compartirium</h1>
+        <h1 class="text-4xl md:text-5xl font-semibold mb-6">{t('comoFunciona.hero.title')}</h1>
         <p class="text-xl text-[var(--color-text-secondary)]">
-          Un proceso simple para que tu escuela o familia acceda a material educativo de calidad sin complicaciones.
+          {t('comoFunciona.hero.subtitle')}
         </p>
       </div>
     </div>
   </section>
 
   <!-- Steps -->
-  <section class="py-16">
+  <section class="py-10">
     <div class="container">
       <div class="max-w-4xl mx-auto">
         <!-- Step 1 -->
@@ -25,22 +29,22 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold mb-6">
               1
             </div>
-            <h2 class="text-2xl font-semibold mb-4">Explora el catálogo</h2>
+            <h2 class="text-2xl font-semibold mb-4">{t('comoFunciona.step1.title')}</h2>
             <p class="text-[var(--color-text-secondary)] mb-4">
-              Navega por nuestras categorías: libros de texto, juegos educativos, material didáctico, mobiliario, dispositivos y packs completos.
+              {t('comoFunciona.step1.desc')}
             </p>
             <ul class="space-y-2">
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Filtra por edad, etapa educativa o tipo de material
+                {t('comoFunciona.step1.bullet1')}
               </li>
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Consulta la disponibilidad en tiempo real
+                {t('comoFunciona.step1.bullet2')}
               </li>
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Lee las descripciones pedagógicas de cada producto
+                {t('comoFunciona.step1.bullet3')}
               </li>
             </ul>
           </div>
@@ -49,22 +53,22 @@ import Layout from '../layouts/Layout.astro';
               <div class="flex items-center gap-4 mb-4">
                 <i class="ph ph-magnifying-glass text-4xl text-[var(--color-brown-primary)]"></i>
                 <div>
-                  <p class="font-semibold">Catálogo completo</p>
-                  <p class="text-sm text-[var(--color-text-muted)]">+200 productos disponibles</p>
+                  <p class="font-semibold">{t('comoFunciona.step1.catalogo')}</p>
+                  <p class="text-sm text-[var(--color-text-muted)]">{t('comoFunciona.step1.productos')}</p>
                 </div>
               </div>
               <div class="grid grid-cols-3 gap-2">
                 <div class="bg-white p-3 rounded-lg text-center">
                   <i class="ph ph-book-open text-xl text-[var(--color-brown-primary)]"></i>
-                  <p class="text-xs mt-1">Libros</p>
+                  <p class="text-xs mt-1">{t('comoFunciona.step1.libros')}</p>
                 </div>
                 <div class="bg-white p-3 rounded-lg text-center">
                   <i class="ph ph-puzzle-piece text-xl text-[var(--color-brown-primary)]"></i>
-                  <p class="text-xs mt-1">Juegos</p>
+                  <p class="text-xs mt-1">{t('comoFunciona.step1.juegos')}</p>
                 </div>
                 <div class="bg-white p-3 rounded-lg text-center">
                   <i class="ph ph-device-tablet text-xl text-[var(--color-brown-primary)]"></i>
-                  <p class="text-xs mt-1">Dispositivos</p>
+                  <p class="text-xs mt-1">{t('comoFunciona.step1.dispositivos')}</p>
                 </div>
               </div>
             </div>
@@ -77,47 +81,47 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold mb-6">
               2
             </div>
-            <h2 class="text-2xl font-semibold mb-4">Elige el periodo de alquiler</h2>
+            <h2 class="text-2xl font-semibold mb-4">{t('comoFunciona.step2.title')}</h2>
             <p class="text-[var(--color-text-secondary)] mb-4">
-              Flexibilidad total para adaptarnos a tus necesidades. Alquila por el tiempo que realmente lo necesites.
+              {t('comoFunciona.step2.desc')}
             </p>
             <ul class="space-y-2">
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                <strong>Por semanas:</strong> ideal para proyectos puntuales
+                <strong>{t('comoFunciona.step2.bullet1')}</strong> {t('comoFunciona.step2.bullet1b')}
               </li>
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                <strong>Por meses:</strong> perfecto para unidades didácticas
+                <strong>{t('comoFunciona.step2.bullet2')}</strong> {t('comoFunciona.step2.bullet2b')}
               </li>
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                <strong>Por trimestre/curso:</strong> el mejor precio para escuelas
+                <strong>{t('comoFunciona.step2.bullet3')}</strong> {t('comoFunciona.step2.bullet3b')}
               </li>
             </ul>
           </div>
           <div class="md:w-1/2">
             <div class="card p-8 bg-[var(--color-cream-light)]">
-              <p class="font-semibold mb-4">Selecciona tu periodo</p>
+              <p class="font-semibold mb-4">{t('comoFunciona.step2.selecciona')}</p>
               <div class="space-y-3">
                 <div class="bg-white p-4 rounded-lg flex items-center justify-between">
                   <div class="flex items-center gap-3">
                     <i class="ph ph-calendar text-[var(--color-brown-primary)]"></i>
-                    <span>1 semana</span>
+                    <span>{t('comoFunciona.step2.semana')}</span>
                   </div>
-                  <span class="font-semibold">desde 5€</span>
+                  <span class="font-semibold">{t('comoFunciona.step2.desde')} 5€</span>
                 </div>
                 <div class="bg-white p-4 rounded-lg flex items-center justify-between">
                   <div class="flex items-center gap-3">
                     <i class="ph ph-calendar text-[var(--color-brown-primary)]"></i>
-                    <span>1 mes</span>
+                    <span>{t('comoFunciona.step2.mes')}</span>
                   </div>
-                  <span class="font-semibold">desde 15€</span>
+                  <span class="font-semibold">{t('comoFunciona.step2.desde')} 15€</span>
                 </div>
                 <div class="bg-[var(--color-brown-primary)]/10 p-4 rounded-lg flex items-center justify-between border-2 border-[var(--color-brown-primary)]">
                   <div class="flex items-center gap-3">
                     <i class="ph ph-star text-[var(--color-brown-primary)]"></i>
-                    <span class="font-medium">Trimestre</span>
+                    <span class="font-medium">{t('comoFunciona.step2.trimestre')}</span>
                   </div>
                   <span class="font-semibold text-[var(--color-brown-primary)]">-30%</span>
                 </div>
@@ -132,22 +136,22 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold mb-6">
               3
             </div>
-            <h2 class="text-2xl font-semibold mb-4">Recibe el material</h2>
+            <h2 class="text-2xl font-semibold mb-4">{t('comoFunciona.step3.title')}</h2>
             <p class="text-[var(--color-text-secondary)] mb-4">
-              Nos encargamos de todo. Elige cómo y dónde quieres recibir tu pedido.
+              {t('comoFunciona.step3.desc')}
             </p>
             <ul class="space-y-2">
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Entrega directa en tu escuela o domicilio
+                {t('comoFunciona.step3.bullet1')}
               </li>
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Recogida en nuestros puntos (fijos e itinerantes)
+                {t('comoFunciona.step3.bullet2')}
               </li>
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Material revisado, limpio y listo para usar
+                {t('comoFunciona.step3.bullet3')}
               </li>
             </ul>
           </div>
@@ -158,8 +162,8 @@ import Layout from '../layouts/Layout.astro';
                   <i class="ph ph-truck text-2xl text-[var(--color-success)]"></i>
                 </div>
                 <div>
-                  <p class="font-semibold">Envío programado</p>
-                  <p class="text-sm text-[var(--color-text-muted)]">Lunes 28 de enero, 9:00-14:00</p>
+                  <p class="font-semibold">{t('comoFunciona.step3.envio')}</p>
+                  <p class="text-sm text-[var(--color-text-muted)]">Dilluns 28 de gener, 9:00-14:00</p>
                 </div>
               </div>
               <div class="bg-white p-4 rounded-lg">
@@ -182,22 +186,22 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold mb-6">
               4
             </div>
-            <h2 class="text-2xl font-semibold mb-4">Devuelve y repite</h2>
+            <h2 class="text-2xl font-semibold mb-4">{t('comoFunciona.step4.title')}</h2>
             <p class="text-[var(--color-text-secondary)] mb-4">
-              Cuando termines, coordinamos la recogida. El material vuelve a nuestro almacén, lo revisamos y preparamos para el siguiente usuario.
+              {t('comoFunciona.step4.desc')}
             </p>
             <ul class="space-y-2">
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Recogida gratuita incluida
+                {t('comoFunciona.step4.bullet1')}
               </li>
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Renueva o amplía fácilmente desde tu área de cliente
+                {t('comoFunciona.step4.bullet2')}
               </li>
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
                 <i class="ph ph-check-circle text-[var(--color-success)]"></i>
-                Economía circular: reduces residuos y ahorras
+                {t('comoFunciona.step4.bullet3')}
               </li>
             </ul>
           </div>
@@ -207,9 +211,9 @@ import Layout from '../layouts/Layout.astro';
                 <div class="w-20 h-20 mx-auto rounded-full bg-[var(--color-success)]/10 flex items-center justify-center mb-4">
                   <i class="ph ph-recycle text-4xl text-[var(--color-success)]"></i>
                 </div>
-                <p class="font-semibold text-lg mb-2">Economía circular</p>
+                <p class="font-semibold text-lg mb-2">{t('comoFunciona.step4.circular')}</p>
                 <p class="text-[var(--color-text-muted)] text-sm">
-                  Cada producto se reutiliza una media de 8 veces, reduciendo el impacto ambiental y haciendo la educación más accesible.
+                  {t('comoFunciona.step4.circularDesc')}
                 </p>
               </div>
             </div>
@@ -220,13 +224,13 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- For Schools -->
-  <section class="py-16 bg-[var(--color-cream-light)]">
+  <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-semibold mb-4">Para escuelas: Planificador de curso</h2>
+          <h2 class="text-3xl font-semibold mb-4">{t('comoFunciona.escuelas.title')}</h2>
           <p class="text-[var(--color-text-secondary)]">
-            Programa todo el material que necesitas para el curso escolar con antelación
+            {t('comoFunciona.escuelas.subtitle')}
           </p>
         </div>
 
@@ -236,27 +240,27 @@ import Layout from '../layouts/Layout.astro';
               <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
                 <i class="ph ph-calendar-check text-2xl text-[var(--color-brown-primary)]"></i>
               </div>
-              <h3 class="font-semibold mb-2">Planifica por trimestres</h3>
+              <h3 class="font-semibold mb-2">{t('comoFunciona.escuelas.planifica.title')}</h3>
               <p class="text-sm text-[var(--color-text-secondary)]">
-                Crea tu calendario de necesidades y nosotros nos encargamos de las entregas
+                {t('comoFunciona.escuelas.planifica.desc')}
               </p>
             </div>
             <div class="text-center">
               <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
                 <i class="ph ph-arrows-clockwise text-2xl text-[var(--color-brown-primary)]"></i>
               </div>
-              <h3 class="font-semibold mb-2">Renovación automática</h3>
+              <h3 class="font-semibold mb-2">{t('comoFunciona.escuelas.renovacion.title')}</h3>
               <p class="text-sm text-[var(--color-text-secondary)]">
-                Activa la renovación trimestral y olvídate de gestiones
+                {t('comoFunciona.escuelas.renovacion.desc')}
               </p>
             </div>
             <div class="text-center">
               <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
                 <i class="ph ph-users-three text-2xl text-[var(--color-brown-primary)]"></i>
               </div>
-              <h3 class="font-semibold mb-2">Multiusuario</h3>
+              <h3 class="font-semibold mb-2">{t('comoFunciona.escuelas.multiusuario.title')}</h3>
               <p class="text-sm text-[var(--color-text-secondary)]">
-                Varios profesores pueden gestionar pedidos desde la misma cuenta de centro
+                {t('comoFunciona.escuelas.multiusuario.desc')}
               </p>
             </div>
           </div>
@@ -266,21 +270,21 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- CTA -->
-  <section class="py-16">
+  <section class="py-10">
     <div class="container">
       <div class="max-w-2xl mx-auto text-center">
-        <h2 class="text-3xl font-semibold mb-4">¿Listo para empezar?</h2>
+        <h2 class="text-3xl font-semibold mb-4">{t('comoFunciona.cta.title')}</h2>
         <p class="text-[var(--color-text-secondary)] mb-8">
-          Crea tu cuenta gratis y explora todo nuestro catálogo. Sin compromiso.
+          {t('comoFunciona.cta.subtitle')}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/catalogo" class="btn btn-primary">
+          <a href={getLocalizedPath('catalogo', lang)} class="btn btn-primary">
             <i class="ph ph-magnifying-glass"></i>
-            Ver catálogo
+            {t('comoFunciona.cta.catalogo')}
           </a>
-          <a href="/cliente" class="btn btn-secondary">
+          <a href={getLocalizedPath('client', lang)} class="btn btn-secondary">
             <i class="ph ph-user-plus"></i>
-            Crear cuenta
+            {t('comoFunciona.cta.cuenta')}
           </a>
         </div>
       </div>

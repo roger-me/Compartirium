@@ -1,0 +1,293 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<Layout title={t('comoFunciona.title')} lang={lang}>
+  <!-- Hero -->
+  <section class="py-16 bg-[var(--color-cream-light)]">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-semibold mb-6">{t('comoFunciona.hero.title')}</h1>
+        <p class="text-xl text-[var(--color-text-secondary)]">
+          {t('comoFunciona.hero.subtitle')}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <!-- Step 1 -->
+        <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
+          <div class="md:w-1/2">
+            <div class="w-16 h-16 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold mb-6">
+              1
+            </div>
+            <h2 class="text-2xl font-semibold mb-4">{t('comoFunciona.step1.title')}</h2>
+            <p class="text-[var(--color-text-secondary)] mb-4">
+              {t('comoFunciona.step1.desc')}
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step1.bullet1')}
+              </li>
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step1.bullet2')}
+              </li>
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step1.bullet3')}
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2">
+            <div class="card p-8 bg-[var(--color-cream-light)]">
+              <div class="flex items-center gap-4 mb-4">
+                <i class="ph ph-magnifying-glass text-4xl text-[var(--color-brown-primary)]"></i>
+                <div>
+                  <p class="font-semibold">{t('comoFunciona.step1.catalogo')}</p>
+                  <p class="text-sm text-[var(--color-text-muted)]">{t('comoFunciona.step1.productos')}</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-2">
+                <div class="bg-white p-3 rounded-lg text-center">
+                  <i class="ph ph-book-open text-xl text-[var(--color-brown-primary)]"></i>
+                  <p class="text-xs mt-1">{t('comoFunciona.step1.libros')}</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg text-center">
+                  <i class="ph ph-puzzle-piece text-xl text-[var(--color-brown-primary)]"></i>
+                  <p class="text-xs mt-1">{t('comoFunciona.step1.juegos')}</p>
+                </div>
+                <div class="bg-white p-3 rounded-lg text-center">
+                  <i class="ph ph-device-tablet text-xl text-[var(--color-brown-primary)]"></i>
+                  <p class="text-xs mt-1">{t('comoFunciona.step1.dispositivos')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col md:flex-row-reverse gap-8 items-center mb-16">
+          <div class="md:w-1/2">
+            <div class="w-16 h-16 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold mb-6">
+              2
+            </div>
+            <h2 class="text-2xl font-semibold mb-4">{t('comoFunciona.step2.title')}</h2>
+            <p class="text-[var(--color-text-secondary)] mb-4">
+              {t('comoFunciona.step2.desc')}
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                <strong>{t('comoFunciona.step2.bullet1')}</strong> {t('comoFunciona.step2.bullet1b')}
+              </li>
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                <strong>{t('comoFunciona.step2.bullet2')}</strong> {t('comoFunciona.step2.bullet2b')}
+              </li>
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                <strong>{t('comoFunciona.step2.bullet3')}</strong> {t('comoFunciona.step2.bullet3b')}
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2">
+            <div class="card p-8 bg-[var(--color-cream-light)]">
+              <p class="font-semibold mb-4">{t('comoFunciona.step2.selecciona')}</p>
+              <div class="space-y-3">
+                <div class="bg-white p-4 rounded-lg flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <i class="ph ph-calendar text-[var(--color-brown-primary)]"></i>
+                    <span>{t('comoFunciona.step2.semana')}</span>
+                  </div>
+                  <span class="font-semibold">{t('comoFunciona.step2.desde')} 5€</span>
+                </div>
+                <div class="bg-white p-4 rounded-lg flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <i class="ph ph-calendar text-[var(--color-brown-primary)]"></i>
+                    <span>{t('comoFunciona.step2.mes')}</span>
+                  </div>
+                  <span class="font-semibold">{t('comoFunciona.step2.desde')} 15€</span>
+                </div>
+                <div class="bg-[var(--color-brown-primary)]/10 p-4 rounded-lg flex items-center justify-between border-2 border-[var(--color-brown-primary)]">
+                  <div class="flex items-center gap-3">
+                    <i class="ph ph-star text-[var(--color-brown-primary)]"></i>
+                    <span class="font-medium">{t('comoFunciona.step2.trimestre')}</span>
+                  </div>
+                  <span class="font-semibold text-[var(--color-brown-primary)]">-30%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col md:flex-row gap-8 items-center mb-16">
+          <div class="md:w-1/2">
+            <div class="w-16 h-16 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold mb-6">
+              3
+            </div>
+            <h2 class="text-2xl font-semibold mb-4">{t('comoFunciona.step3.title')}</h2>
+            <p class="text-[var(--color-text-secondary)] mb-4">
+              {t('comoFunciona.step3.desc')}
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step3.bullet1')}
+              </li>
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step3.bullet2')}
+              </li>
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step3.bullet3')}
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2">
+            <div class="card p-8 bg-[var(--color-cream-light)]">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 rounded-full bg-[var(--color-success)]/10 flex items-center justify-center">
+                  <i class="ph ph-truck text-2xl text-[var(--color-success)]"></i>
+                </div>
+                <div>
+                  <p class="font-semibold">{t('comoFunciona.step3.envio')}</p>
+                  <p class="text-sm text-[var(--color-text-muted)]">Lunes 28 de enero, 9:00-14:00</p>
+                </div>
+              </div>
+              <div class="bg-white p-4 rounded-lg">
+                <div class="flex items-start gap-3">
+                  <i class="ph ph-map-pin text-[var(--color-brown-primary)] mt-1"></i>
+                  <div>
+                    <p class="font-medium">CEIP Mediterrani</p>
+                    <p class="text-sm text-[var(--color-text-muted)]">Carrer de l'Escola, 15</p>
+                    <p class="text-sm text-[var(--color-text-muted)]">08001 Barcelona</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex flex-col md:flex-row-reverse gap-8 items-center">
+          <div class="md:w-1/2">
+            <div class="w-16 h-16 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold mb-6">
+              4
+            </div>
+            <h2 class="text-2xl font-semibold mb-4">{t('comoFunciona.step4.title')}</h2>
+            <p class="text-[var(--color-text-secondary)] mb-4">
+              {t('comoFunciona.step4.desc')}
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step4.bullet1')}
+              </li>
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step4.bullet2')}
+              </li>
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {t('comoFunciona.step4.bullet3')}
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2">
+            <div class="card p-8 bg-[var(--color-cream-light)]">
+              <div class="text-center">
+                <div class="w-20 h-20 mx-auto rounded-full bg-[var(--color-success)]/10 flex items-center justify-center mb-4">
+                  <i class="ph ph-recycle text-4xl text-[var(--color-success)]"></i>
+                </div>
+                <p class="font-semibold text-lg mb-2">{t('comoFunciona.step4.circular')}</p>
+                <p class="text-[var(--color-text-muted)] text-sm">
+                  {t('comoFunciona.step4.circularDesc')}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Schools -->
+  <section class="py-16 bg-[var(--color-cream-light)]">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-semibold mb-4">{t('comoFunciona.escuelas.title')}</h2>
+          <p class="text-[var(--color-text-secondary)]">
+            {t('comoFunciona.escuelas.subtitle')}
+          </p>
+        </div>
+
+        <div class="card p-8">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+                <i class="ph ph-calendar-check text-2xl text-[var(--color-brown-primary)]"></i>
+              </div>
+              <h3 class="font-semibold mb-2">{t('comoFunciona.escuelas.planifica.title')}</h3>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                {t('comoFunciona.escuelas.planifica.desc')}
+              </p>
+            </div>
+            <div class="text-center">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+                <i class="ph ph-arrows-clockwise text-2xl text-[var(--color-brown-primary)]"></i>
+              </div>
+              <h3 class="font-semibold mb-2">{t('comoFunciona.escuelas.renovacion.title')}</h3>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                {t('comoFunciona.escuelas.renovacion.desc')}
+              </p>
+            </div>
+            <div class="text-center">
+              <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+                <i class="ph ph-users-three text-2xl text-[var(--color-brown-primary)]"></i>
+              </div>
+              <h3 class="font-semibold mb-2">{t('comoFunciona.escuelas.multiusuario.title')}</h3>
+              <p class="text-sm text-[var(--color-text-secondary)]">
+                {t('comoFunciona.escuelas.multiusuario.desc')}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-semibold mb-4">{t('comoFunciona.cta.title')}</h2>
+        <p class="text-[var(--color-text-secondary)] mb-8">
+          {t('comoFunciona.cta.subtitle')}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={getLocalizedPath('catalogo', lang)} class="btn btn-primary">
+            <i class="ph ph-magnifying-glass"></i>
+            {t('comoFunciona.cta.catalogo')}
+          </a>
+          <a href={getLocalizedPath('client', lang)} class="btn btn-secondary">
+            <i class="ph ph-user-plus"></i>
+            {t('comoFunciona.cta.cuenta')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

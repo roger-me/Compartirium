@@ -1,26 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
-import { products, categories } from '../data/products';
-import { useTranslations, getLocalizedPath } from '../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, categories } from '../../data/products';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
 
-const lang = 'ca';
+const lang = 'es';
 const t = useTranslations(lang);
 const featuredProducts = products.filter(p => p.available).slice(0, 4);
 ---
 
 <Layout title={t('home.title')} lang={lang}>
   <!-- Hero Section -->
-  <section class="py-20 md:py-32 relative overflow-hidden">
-    <!-- Subtle background image -->
-    <div class="absolute inset-0 opacity-[0.07]">
-      <img
-        src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=80"
-        alt=""
-        class="w-full h-full object-cover"
-      />
-    </div>
-    <div class="container relative z-10">
+  <section class="py-20 md:py-32">
+    <div class="container">
       <div class="max-w-3xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-[var(--color-text-primary)] mb-6 leading-tight">
           {t('home.hero.title')}

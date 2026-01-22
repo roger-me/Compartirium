@@ -1,39 +1,43 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+
+const lang = 'ca';
+const t = useTranslations(lang);
 ---
 
-<Layout title="Quiénes somos">
+<Layout title={t('quienesSomos.title')} lang={lang}>
   <!-- Hero -->
-  <section class="py-16 bg-[var(--color-cream-light)]">
+  <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-semibold mb-6">Més que compartir</h1>
+        <h1 class="text-4xl md:text-5xl font-semibold mb-6">{t('quienesSomos.hero.title')}</h1>
         <p class="text-xl text-[var(--color-text-secondary)]">
-          Somos un servicio de alquiler y reutilización de material educativo que nace de la convicción de que la educación de calidad debe ser accesible para todos.
+          {t('quienesSomos.hero.subtitle')}
         </p>
       </div>
     </div>
   </section>
 
   <!-- Mission -->
-  <section class="py-16">
+  <section class="py-10">
     <div class="container">
       <div class="max-w-4xl mx-auto">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 class="text-3xl font-semibold mb-6">Nuestra misión</h2>
+            <h2 class="text-3xl font-semibold mb-6">{t('quienesSomos.mision.title')}</h2>
             <p class="text-[var(--color-text-secondary)] mb-4">
-              Facilitar el acceso a material educativo de calidad para escuelas y familias de Barcelona y área metropolitana, promoviendo la economía circular y reduciendo el impacto ambiental.
+              {t('quienesSomos.mision.p1')}
             </p>
             <p class="text-[var(--color-text-secondary)]">
-              Creemos que cada libro, cada juego educativo y cada recurso didáctico puede tener muchas vidas. Al compartir, no solo ahorramos dinero: construimos una comunidad educativa más sostenible y solidaria.
+              {t('quienesSomos.mision.p2')}
             </p>
           </div>
-          <div class="card p-8 bg-[var(--color-brown-primary)] text-white">
-            <blockquote class="text-xl italic mb-4">
-              "La educación no debería depender del presupuesto de cada familia o escuela. Compartirium nace para democratizar el acceso a recursos educativos de calidad."
+          <div class="card p-8">
+            <blockquote class="text-xl italic mb-4 text-[var(--color-text-primary)]">
+              {t('quienesSomos.mision.quote')}
             </blockquote>
-            <p class="text-white/70">— Equipo Compartirium</p>
+            <p class="text-[var(--color-text-secondary)]">{t('quienesSomos.mision.author')}</p>
           </div>
         </div>
       </div>
@@ -41,19 +45,19 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Values -->
-  <section class="py-16 bg-[var(--color-cream-light)]">
+  <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-semibold text-center mb-12">Nuestros valores</h2>
+        <h2 class="text-3xl font-semibold text-center mb-12">{t('quienesSomos.valores.title')}</h2>
 
         <div class="grid md:grid-cols-3 gap-8">
           <div class="card p-8 text-center">
             <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[var(--color-success)]/10 flex items-center justify-center">
               <i class="ph ph-leaf text-3xl text-[var(--color-success)]"></i>
             </div>
-            <h3 class="font-semibold text-xl mb-3">Sostenibilidad</h3>
+            <h3 class="font-semibold text-xl mb-3">{t('quienesSomos.valores.sostenibilidad.title')}</h3>
             <p class="text-[var(--color-text-secondary)]">
-              Cada producto reutilizado es un producto menos fabricado. Reducimos residuos y huella de carbono mientras extendemos la vida útil del material educativo.
+              {t('quienesSomos.valores.sostenibilidad.desc')}
             </p>
           </div>
 
@@ -61,9 +65,9 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class="ph ph-handshake text-3xl text-[var(--color-brown-primary)]"></i>
             </div>
-            <h3 class="font-semibold text-xl mb-3">Accesibilidad</h3>
+            <h3 class="font-semibold text-xl mb-3">{t('quienesSomos.valores.accesibilidad.title')}</h3>
             <p class="text-[var(--color-text-secondary)]">
-              Precios justos y flexibles para que ninguna escuela o familia tenga que renunciar a material educativo de calidad por motivos económicos.
+              {t('quienesSomos.valores.accesibilidad.desc')}
             </p>
           </div>
 
@@ -71,9 +75,9 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[var(--color-warning)]/10 flex items-center justify-center">
               <i class="ph ph-heart text-3xl text-[var(--color-warning)]"></i>
             </div>
-            <h3 class="font-semibold text-xl mb-3">Comunidad</h3>
+            <h3 class="font-semibold text-xl mb-3">{t('quienesSomos.valores.comunidad.title')}</h3>
             <p class="text-[var(--color-text-secondary)]">
-              Creamos una red de escuelas y familias que comparten recursos y valores. Juntos hacemos más con menos.
+              {t('quienesSomos.valores.comunidad.desc')}
             </p>
           </div>
         </div>
@@ -82,10 +86,10 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- How we work -->
-  <section class="py-16">
+  <section class="py-10">
     <div class="container">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-semibold text-center mb-12">Cómo trabajamos</h2>
+        <h2 class="text-3xl font-semibold text-center mb-12">{t('quienesSomos.trabajo.title')}</h2>
 
         <div class="space-y-8">
           <div class="flex gap-6 items-start">
@@ -93,9 +97,9 @@ import Layout from '../layouts/Layout.astro';
               1
             </div>
             <div>
-              <h3 class="font-semibold text-xl mb-2">Recibimos donaciones</h3>
+              <h3 class="font-semibold text-xl mb-2">{t('quienesSomos.trabajo.1.title')}</h3>
               <p class="text-[var(--color-text-secondary)]">
-                Familias, escuelas y empresas nos donan material educativo que ya no utilizan. También adquirimos material nuevo de forma responsable.
+                {t('quienesSomos.trabajo.1.desc')}
               </p>
             </div>
           </div>
@@ -105,9 +109,9 @@ import Layout from '../layouts/Layout.astro';
               2
             </div>
             <div>
-              <h3 class="font-semibold text-xl mb-2">Revisamos y clasificamos</h3>
+              <h3 class="font-semibold text-xl mb-2">{t('quienesSomos.trabajo.2.title')}</h3>
               <p class="text-[var(--color-text-secondary)]">
-                En nuestro almacén, cada pieza se revisa, limpia y cataloga. Solo ponemos en circulación material en buen estado que cumpla nuestros estándares de calidad pedagógica.
+                {t('quienesSomos.trabajo.2.desc')}
               </p>
             </div>
           </div>
@@ -117,9 +121,9 @@ import Layout from '../layouts/Layout.astro';
               3
             </div>
             <div>
-              <h3 class="font-semibold text-xl mb-2">Ponemos en circulación</h3>
+              <h3 class="font-semibold text-xl mb-2">{t('quienesSomos.trabajo.3.title')}</h3>
               <p class="text-[var(--color-text-secondary)]">
-                El material se alquila a escuelas y familias por el tiempo que lo necesiten. Gestionamos la logística de entrega y recogida.
+                {t('quienesSomos.trabajo.3.desc')}
               </p>
             </div>
           </div>
@@ -129,9 +133,9 @@ import Layout from '../layouts/Layout.astro';
               4
             </div>
             <div>
-              <h3 class="font-semibold text-xl mb-2">El ciclo continúa</h3>
+              <h3 class="font-semibold text-xl mb-2">{t('quienesSomos.trabajo.4.title')}</h3>
               <p class="text-[var(--color-text-secondary)]">
-                Cuando el material vuelve, lo revisamos de nuevo y lo preparamos para el siguiente usuario. Cada producto tiene una media de 8 vidas útiles.
+                {t('quienesSomos.trabajo.4.desc')}
               </p>
             </div>
           </div>
@@ -141,27 +145,27 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Impact -->
-  <section class="py-16 bg-[var(--color-cream-light)]">
+  <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-semibold text-center mb-12">Nuestro impacto</h2>
+        <h2 class="text-3xl font-semibold text-center mb-12">{t('quienesSomos.impacto.title')}</h2>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div class="card p-6 text-center">
             <p class="text-4xl font-semibold text-[var(--color-brown-primary)] mb-2">+500</p>
-            <p class="text-sm text-[var(--color-text-secondary)]">kg de material reutilizado al año</p>
+            <p class="text-sm text-[var(--color-text-secondary)]">{t('quienesSomos.impacto.material')}</p>
           </div>
           <div class="card p-6 text-center">
             <p class="text-4xl font-semibold text-[var(--color-brown-primary)] mb-2">+50</p>
-            <p class="text-sm text-[var(--color-text-secondary)]">escuelas colaboradoras</p>
+            <p class="text-sm text-[var(--color-text-secondary)]">{t('quienesSomos.impacto.escuelas')}</p>
           </div>
           <div class="card p-6 text-center">
             <p class="text-4xl font-semibold text-[var(--color-brown-primary)] mb-2">+200</p>
-            <p class="text-sm text-[var(--color-text-secondary)]">familias beneficiadas</p>
+            <p class="text-sm text-[var(--color-text-secondary)]">{t('quienesSomos.impacto.familias')}</p>
           </div>
           <div class="card p-6 text-center">
             <p class="text-4xl font-semibold text-[var(--color-brown-primary)] mb-2">8x</p>
-            <p class="text-sm text-[var(--color-text-secondary)]">vidas medias por producto</p>
+            <p class="text-sm text-[var(--color-text-secondary)]">{t('quienesSomos.impacto.vidas')}</p>
           </div>
         </div>
       </div>
@@ -169,24 +173,24 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Donations CTA -->
-  <section class="py-16">
+  <section class="py-10">
     <div class="container">
       <div class="max-w-4xl mx-auto">
-        <div class="card p-8 md:p-12 bg-[var(--color-brown-primary)] text-white">
+        <div class="card p-8 md:p-12">
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 class="text-3xl font-semibold mb-4">¿Tienes material para donar?</h2>
-              <p class="text-white/80 mb-6">
-                Si tienes libros, juegos educativos o material didáctico en buen estado que ya no uses, dónalo. Le daremos una nueva vida y llegará a quien lo necesita.
+              <h2 class="text-3xl font-semibold mb-4 text-[var(--color-text-primary)]">{t('quienesSomos.donar.title')}</h2>
+              <p class="text-[var(--color-text-secondary)] mb-6">
+                {t('quienesSomos.donar.desc')}
               </p>
-              <a href="#" class="btn bg-white text-[var(--color-brown-primary)] hover:bg-white/90">
+              <a href="#" class="btn btn-secondary">
                 <i class="ph ph-gift"></i>
-                Quiero donar
+                {t('quienesSomos.donar.button')}
               </a>
             </div>
             <div class="text-center">
-              <div class="w-32 h-32 mx-auto rounded-full bg-white/10 flex items-center justify-center">
-                <i class="ph ph-hand-heart text-6xl text-white"></i>
+              <div class="w-32 h-32 mx-auto rounded-full flex items-center justify-center bg-[var(--color-brown-primary)]/10">
+                <i class="ph ph-hand-heart text-6xl text-[var(--color-brown-primary)]"></i>
               </div>
             </div>
           </div>
@@ -196,12 +200,12 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Contact -->
-  <section class="py-16 bg-[var(--color-cream-light)]">
+  <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div class="max-w-2xl mx-auto text-center">
-        <h2 class="text-3xl font-semibold mb-4">Contacta con nosotros</h2>
+        <h2 class="text-3xl font-semibold mb-4">{t('quienesSomos.contacto.title')}</h2>
         <p class="text-[var(--color-text-secondary)] mb-8">
-          ¿Tienes preguntas? ¿Quieres colaborar? Estamos aquí para ayudarte.
+          {t('quienesSomos.contacto.desc')}
         </p>
 
         <div class="grid sm:grid-cols-3 gap-6">
@@ -209,21 +213,21 @@ import Layout from '../layouts/Layout.astro';
             <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class="ph ph-envelope text-xl text-[var(--color-brown-primary)]"></i>
             </div>
-            <p class="font-medium">Email</p>
+            <p class="font-medium">{t('quienesSomos.contacto.email')}</p>
             <p class="text-sm text-[var(--color-text-muted)]">hola@compartirium.es</p>
           </div>
           <div class="card p-6 text-center">
             <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class="ph ph-phone text-xl text-[var(--color-brown-primary)]"></i>
             </div>
-            <p class="font-medium">Teléfono</p>
+            <p class="font-medium">{t('quienesSomos.contacto.telefono')}</p>
             <p class="text-sm text-[var(--color-text-muted)]">+34 93 123 45 67</p>
           </div>
           <div class="card p-6 text-center">
             <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class="ph ph-map-pin text-xl text-[var(--color-brown-primary)]"></i>
             </div>
-            <p class="font-medium">Dirección</p>
+            <p class="font-medium">{t('quienesSomos.contacto.direccion')}</p>
             <p class="text-sm text-[var(--color-text-muted)]">Barcelona</p>
           </div>
         </div>

@@ -1,7 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { products, getProductBySlug } from '../../data/products';
+import { products, getProductBySlug, categories } from '../../data/products';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+
+const lang = 'ca';
+const t = useTranslations(lang);
 
 export function getStaticPaths() {
   return products.map(product => ({
@@ -16,7 +20,13 @@ const relatedProducts = products
   .filter(p => p.categorySlug === product.categorySlug && p.slug !== product.slug)
   .slice(0, 3);
 
-const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+// Get translated category name
+const categoryObj = categories.find(c => c.slug === product.categorySlug);
+const categoryName = categoryObj ? categoryObj.name[lang] : product.categorySlug;
+
+const months = lang === 'ca'
+  ? ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre']
+  : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 const currentMonth = new Date().getMonth();
 const currentYear = new Date().getFullYear();
 
@@ -29,14 +39,14 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
 });
 ---
 
-<Layout title={product.name} description={product.description}>
+<Layout title={product.name} description={product.description} lang={lang}>
   <section class="py-12">
     <div class="container">
       <!-- Breadcrumb -->
       <nav class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] mb-8">
-        <a href="/" class="hover:text-[var(--color-brown-primary)]">Inicio</a>
+        <a href={getLocalizedPath('', lang)} class="hover:text-[var(--color-brown-primary)]">{t('nav.inicio')}</a>
         <i class="ph ph-caret-right"></i>
-        <a href="/catalogo" class="hover:text-[var(--color-brown-primary)]">Catálogo</a>
+        <a href={getLocalizedPath('catalogo', lang)} class="hover:text-[var(--color-brown-primary)]">{t('nav.catalogo')}</a>
         <i class="ph ph-caret-right"></i>
         <span class="text-[var(--color-text-primary)]">{product.name}</span>
       </nav>
@@ -67,10 +77,10 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
           <div class="flex items-center gap-3 mb-4">
             <span class="badge badge-success">
               <i class={`ph ph-${product.available ? 'check-circle' : 'clock'}`}></i>
-              {product.available ? 'Disponible' : 'Próximamente'}
+              {product.available ? t('product.disponible') : t('product.noDisponible')}
             </span>
             <span class="text-sm text-[var(--color-text-muted)]">
-              {product.category} · {product.ageRange}
+              {categoryName} · {product.ageRange}
             </span>
           </div>
 
@@ -82,31 +92,31 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
 
           <!-- Pricing -->
           <div class="card p-6 mb-6">
-            <h3 class="font-semibold mb-4">Precios de alquiler</h3>
+            <h3 class="font-semibold mb-4">{t('productDetail.precios')}</h3>
             <div class="grid grid-cols-3 gap-4">
               <div class="text-center p-4 rounded-[var(--radius-button)] bg-[var(--color-cream)]">
                 <p class="text-2xl font-semibold text-[var(--color-brown-primary)]">{product.pricePerWeek}€</p>
-                <p class="text-sm text-[var(--color-text-muted)]">por semana</p>
+                <p class="text-sm text-[var(--color-text-muted)]">{t('product.porSemana')}</p>
               </div>
               <div class="text-center p-4 rounded-[var(--radius-button)] bg-[var(--color-cream)]">
                 <p class="text-2xl font-semibold text-[var(--color-brown-primary)]">{product.pricePerMonth}€</p>
-                <p class="text-sm text-[var(--color-text-muted)]">por mes</p>
+                <p class="text-sm text-[var(--color-text-muted)]">{t('productDetail.porMes')}</p>
               </div>
               <div class="text-center p-4 rounded-[var(--radius-button)] bg-[var(--color-brown-primary)]/10">
                 <p class="text-2xl font-semibold text-[var(--color-brown-primary)]">{product.pricePerTerm}€</p>
-                <p class="text-sm text-[var(--color-text-muted)]">por trimestre</p>
+                <p class="text-sm text-[var(--color-text-muted)]">{t('productDetail.porTrimestre')}</p>
               </div>
             </div>
             {product.deposit > 0 && (
               <p class="text-sm text-[var(--color-text-muted)] mt-4">
-                <i class="ph ph-info"></i> Depósito reembolsable: {product.deposit}€
+                <i class="ph ph-info"></i> {t('productDetail.deposito')}: {product.deposit}€
               </p>
             )}
           </div>
 
           <!-- Availability Calendar -->
           <div class="card p-6 mb-6">
-            <h3 class="font-semibold mb-4">Disponibilidad</h3>
+            <h3 class="font-semibold mb-4">{t('productDetail.disponibilidad')}</h3>
             <div class="flex items-center justify-between mb-4">
               <button class="p-2 hover:bg-[var(--color-cream)] rounded-lg">
                 <i class="ph ph-caret-left"></i>
@@ -137,11 +147,11 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
             <div class="flex items-center gap-6 mt-4 text-sm">
               <div class="flex items-center gap-2">
                 <div class="w-4 h-4 rounded bg-[var(--color-success)]/20"></div>
-                <span class="text-[var(--color-text-muted)]">Disponible</span>
+                <span class="text-[var(--color-text-muted)]">{t('product.disponible')}</span>
               </div>
               <div class="flex items-center gap-2">
                 <div class="w-4 h-4 rounded bg-gray-100"></div>
-                <span class="text-[var(--color-text-muted)]">No disponible</span>
+                <span class="text-[var(--color-text-muted)]">{t('product.noDisponible')}</span>
               </div>
             </div>
           </div>
@@ -150,7 +160,7 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
           <div class="flex flex-col sm:flex-row gap-4">
             <button class="btn btn-primary flex-1">
               <i class="ph ph-shopping-cart"></i>
-              Añadir al carrito
+              {t('productDetail.addToCart')}
             </button>
             <button class="btn btn-secondary">
               <i class="ph ph-heart"></i>
@@ -164,24 +174,24 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
         <div class="border-b border-[var(--color-brown-primary)]/20 mb-8">
           <nav class="flex gap-8">
             <button class="py-4 border-b-2 border-[var(--color-brown-primary)] text-[var(--color-brown-primary)] font-medium">
-              Información pedagógica
+              {t('productDetail.infoPedagogica')}
             </button>
             <button class="py-4 border-b-2 border-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
-              Incluye
+              {t('productDetail.incluye')}
             </button>
             <button class="py-4 border-b-2 border-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
-              Condiciones
+              {t('productDetail.condiciones')}
             </button>
           </nav>
         </div>
 
         <div class="max-w-3xl">
-          <h3 class="font-semibold text-xl mb-4">Valor pedagógico</h3>
+          <h3 class="font-semibold text-xl mb-4">{t('productDetail.valorPedagogico')}</h3>
           <p class="text-[var(--color-text-secondary)] mb-6">
             {product.pedagogicalInfo}
           </p>
 
-          <h3 class="font-semibold text-xl mb-4">El pack incluye</h3>
+          <h3 class="font-semibold text-xl mb-4">{t('productDetail.packIncluye')}</h3>
           <ul class="space-y-2 mb-6">
             {product.includes.map(item => (
               <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
@@ -191,7 +201,7 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
             ))}
           </ul>
 
-          <h3 class="font-semibold text-xl mb-4">Estado del material</h3>
+          <h3 class="font-semibold text-xl mb-4">{t('productDetail.estadoMaterial')}</h3>
           <div class="flex items-center gap-3">
             <span class={`badge ${
               product.condition === 'nuevo'
@@ -200,10 +210,10 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
                   ? 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]'
                   : 'bg-[var(--color-warning)]/10 text-[var(--color-warning)]'
             }`}>
-              {product.condition.charAt(0).toUpperCase() + product.condition.slice(1)}
+              {t(`productDetail.condition.${product.condition}`)}
             </span>
             <span class="text-[var(--color-text-muted)] text-sm">
-              {product.stock > 0 ? `${product.stock} unidades disponibles` : 'Sin stock'}
+              {product.stock > 0 ? `${product.stock} ${t('productDetail.unidadesDisponibles')}` : t('productDetail.sinStock')}
             </span>
           </div>
         </div>
@@ -212,17 +222,18 @@ const calendarDays = Array.from({ length: 35 }, (_, i) => {
       <!-- Related Products -->
       {relatedProducts.length > 0 && (
         <div class="mt-16">
-          <h2 class="text-2xl font-semibold mb-8">Productos relacionados</h2>
+          <h2 class="text-2xl font-semibold mb-8">{t('productDetail.relacionados')}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedProducts.map(p => (
               <ProductCard
                 slug={p.slug}
                 name={p.name}
-                category={p.category}
+                categorySlug={p.categorySlug}
                 ageRange={p.ageRange}
                 pricePerWeek={p.pricePerWeek}
                 image={p.image}
                 available={p.available}
+                lang={lang}
               />
             ))}
           </div>
