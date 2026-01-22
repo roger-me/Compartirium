@@ -11,8 +11,8 @@ const t = useTranslations(lang);
   <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-semibold mb-6">{t('quienesSomos.hero.title')}</h1>
-        <p class="text-xl text-[var(--color-text-secondary)]">
+        <h1 class="animate-hero text-4xl md:text-5xl font-semibold mb-6">{t('quienesSomos.hero.title')}</h1>
+        <p class="animate-hero-delay text-xl text-[var(--color-text-secondary)]">
           {t('quienesSomos.hero.subtitle')}
         </p>
       </div>
@@ -24,7 +24,7 @@ const t = useTranslations(lang);
     <div class="container">
       <div>
         <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
+          <div class="animate-on-scroll">
             <h2 class="text-3xl font-semibold mb-6">{t('quienesSomos.mision.title')}</h2>
             <p class="text-lg text-[var(--color-text-secondary)] mb-4">
               {t('quienesSomos.mision.p1')}
@@ -33,7 +33,7 @@ const t = useTranslations(lang);
               {t('quienesSomos.mision.p2')}
             </p>
           </div>
-          <div class="card p-8">
+          <div class="animate-on-scroll card p-8">
             <blockquote class="text-xl italic mb-4 text-[var(--color-text-primary)]">
               {t('quienesSomos.mision.quote')}
             </blockquote>
@@ -48,10 +48,10 @@ const t = useTranslations(lang);
   <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div>
-        <h2 class="text-3xl font-semibold text-center mb-12">{t('quienesSomos.valores.title')}</h2>
+        <h2 class="animate-on-scroll text-3xl font-semibold text-center mb-12">{t('quienesSomos.valores.title')}</h2>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="card p-8 text-center">
+        <div class="grid md:grid-cols-3 gap-8 stagger-children">
+          <div class="animate-on-scroll card p-8 text-center">
             <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[var(--color-success)]/10 flex items-center justify-center">
               <i class="ph ph-leaf text-3xl text-[var(--color-success)]"></i>
             </div>
@@ -61,7 +61,7 @@ const t = useTranslations(lang);
             </p>
           </div>
 
-          <div class="card p-8 text-center">
+          <div class="animate-on-scroll card p-8 text-center">
             <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class="ph ph-handshake text-3xl text-[var(--color-brown-primary)]"></i>
             </div>
@@ -71,7 +71,7 @@ const t = useTranslations(lang);
             </p>
           </div>
 
-          <div class="card p-8 text-center">
+          <div class="animate-on-scroll card p-8 text-center">
             <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[var(--color-warning)]/10 flex items-center justify-center">
               <i class="ph ph-heart text-3xl text-[var(--color-warning)]"></i>
             </div>
@@ -89,10 +89,10 @@ const t = useTranslations(lang);
   <section class="py-10">
     <div class="container">
       <div>
-        <h2 class="text-3xl font-semibold text-center mb-12">{t('quienesSomos.trabajo.title')}</h2>
+        <h2 class="animate-on-scroll text-3xl font-semibold text-center mb-12">{t('quienesSomos.trabajo.title')}</h2>
 
         <div class="space-y-8">
-          <div class="flex gap-6 items-start">
+          <div class="animate-on-scroll flex gap-6 items-start">
             <div class="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center font-semibold">
               1
             </div>
@@ -104,7 +104,7 @@ const t = useTranslations(lang);
             </div>
           </div>
 
-          <div class="flex gap-6 items-start">
+          <div class="animate-on-scroll flex gap-6 items-start">
             <div class="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center font-semibold">
               2
             </div>
@@ -116,7 +116,7 @@ const t = useTranslations(lang);
             </div>
           </div>
 
-          <div class="flex gap-6 items-start">
+          <div class="animate-on-scroll flex gap-6 items-start">
             <div class="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center font-semibold">
               3
             </div>
@@ -128,7 +128,7 @@ const t = useTranslations(lang);
             </div>
           </div>
 
-          <div class="flex gap-6 items-start">
+          <div class="animate-on-scroll flex gap-6 items-start">
             <div class="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center font-semibold">
               4
             </div>
@@ -148,22 +148,22 @@ const t = useTranslations(lang);
   <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div>
-        <h2 class="text-3xl font-semibold text-center mb-12">{t('quienesSomos.impacto.title')}</h2>
+        <h2 class="animate-on-scroll text-3xl font-semibold text-center mb-12">{t('quienesSomos.impacto.title')}</h2>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="card p-6 text-center">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 stagger-children">
+          <div class="animate-on-scroll card p-6 text-center">
             <p class="text-4xl font-semibold text-[var(--color-brown-primary)] mb-2">+500</p>
             <p class="text-sm text-[var(--color-text-secondary)]">{t('quienesSomos.impacto.material')}</p>
           </div>
-          <div class="card p-6 text-center">
+          <div class="animate-on-scroll card p-6 text-center">
             <p class="text-4xl font-semibold text-[var(--color-brown-primary)] mb-2">+50</p>
             <p class="text-sm text-[var(--color-text-secondary)]">{t('quienesSomos.impacto.escuelas')}</p>
           </div>
-          <div class="card p-6 text-center">
+          <div class="animate-on-scroll card p-6 text-center">
             <p class="text-4xl font-semibold text-[var(--color-brown-primary)] mb-2">+200</p>
             <p class="text-sm text-[var(--color-text-secondary)]">{t('quienesSomos.impacto.familias')}</p>
           </div>
-          <div class="card p-6 text-center">
+          <div class="animate-on-scroll card p-6 text-center">
             <p class="text-4xl font-semibold text-[var(--color-brown-primary)] mb-2">8x</p>
             <p class="text-sm text-[var(--color-text-secondary)]">{t('quienesSomos.impacto.vidas')}</p>
           </div>
@@ -176,7 +176,7 @@ const t = useTranslations(lang);
   <section class="py-10">
     <div class="container">
       <div>
-        <div class="card p-8 md:p-12">
+        <div class="animate-on-scroll card p-8 md:p-12">
           <div class="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 class="text-3xl font-semibold mb-4 text-[var(--color-text-primary)]">{t('quienesSomos.donar.title')}</h2>
@@ -203,27 +203,27 @@ const t = useTranslations(lang);
   <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
       <div class="text-center">
-        <h2 class="text-3xl font-semibold mb-4">{t('quienesSomos.contacto.title')}</h2>
-        <p class="text-lg text-[var(--color-text-secondary)] mb-8">
+        <h2 class="animate-on-scroll text-3xl font-semibold mb-4">{t('quienesSomos.contacto.title')}</h2>
+        <p class="animate-on-scroll text-lg text-[var(--color-text-secondary)] mb-8">
           {t('quienesSomos.contacto.desc')}
         </p>
 
-        <div class="grid sm:grid-cols-3 gap-6">
-          <div class="card p-6 text-center">
+        <div class="grid sm:grid-cols-3 gap-6 stagger-children">
+          <div class="animate-on-scroll card p-6 text-center">
             <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class="ph ph-envelope text-xl text-[var(--color-brown-primary)]"></i>
             </div>
             <p class="font-medium">{t('quienesSomos.contacto.email')}</p>
             <p class="text-sm text-[var(--color-text-muted)]">hola@compartirium.es</p>
           </div>
-          <div class="card p-6 text-center">
+          <div class="animate-on-scroll card p-6 text-center">
             <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class="ph ph-phone text-xl text-[var(--color-brown-primary)]"></i>
             </div>
             <p class="font-medium">{t('quienesSomos.contacto.telefono')}</p>
             <p class="text-sm text-[var(--color-text-muted)]">+34 93 123 45 67</p>
           </div>
-          <div class="card p-6 text-center">
+          <div class="animate-on-scroll card p-6 text-center">
             <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class="ph ph-map-pin text-xl text-[var(--color-brown-primary)]"></i>
             </div>

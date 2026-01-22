@@ -24,14 +24,14 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--color-cream-light)]"></div>
     <div class="container relative z-10">
       <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-[var(--color-text-primary)] mb-6 leading-tight">
+        <h1 class="animate-hero text-4xl md:text-5xl lg:text-6xl font-semibold text-[var(--color-text-primary)] mb-6 leading-tight">
           {t('home.hero.title')}
           <span class="text-[var(--color-brown-primary)]">{t('home.hero.highlight')}</span>
         </h1>
-        <p class="text-xl text-[var(--color-text-secondary)] mb-10 max-w-2xl mx-auto">
+        <p class="animate-hero-delay text-xl text-[var(--color-text-secondary)] mb-10 max-w-2xl mx-auto">
           {t('home.hero.subtitle')}
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <div class="animate-hero-delay-2 flex flex-col sm:flex-row gap-4 justify-center">
           <a href={getLocalizedPath('catalogo', lang)} class="btn btn-primary text-lg px-8 py-4">
             <i class="ph ph-magnifying-glass"></i>
             {t('home.hero.explorar')}
@@ -48,16 +48,16 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
   <!-- Categories Section -->
   <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
-      <div class="text-center mb-12">
+      <div class="animate-on-scroll text-center mb-12">
         <h2 class="text-3xl font-semibold mb-4">{t('home.categorias.title')}</h2>
         <p class="text-[var(--color-text-secondary)]">{t('home.categorias.subtitle')}</p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 stagger-children">
         {categories.map(category => (
           <a
             href={`${getLocalizedPath('catalogo', lang)}?categoria=${category.slug}`}
-            class="card p-6 text-center hover:-translate-y-1 transition-transform"
+            class="animate-on-scroll card p-6 text-center hover:-translate-y-1 transition-transform"
           >
             <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
               <i class={`ph ph-${category.icon} text-2xl text-[var(--color-brown-primary)]`}></i>
@@ -72,7 +72,7 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
   <!-- Featured Products -->
   <section class="py-10">
     <div class="container">
-      <div class="flex justify-between items-end mb-10">
+      <div class="animate-on-scroll flex justify-between items-end mb-10">
         <div>
           <h2 class="text-3xl font-semibold mb-2">{t('home.productos.title')}</h2>
           <p class="text-[var(--color-text-secondary)]">{t('home.productos.subtitle')}</p>
@@ -83,7 +83,7 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
         </a>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
         {featuredProducts.map(product => (
           <ProductCard
             slug={product.slug}
@@ -110,13 +110,13 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
   <!-- How it Works -->
   <section class="py-10 bg-[var(--color-cream-light)]">
     <div class="container">
-      <div class="text-center mb-12">
+      <div class="animate-on-scroll text-center mb-12">
         <h2 class="text-3xl font-semibold mb-4">{t('home.pasos.title')}</h2>
         <p class="text-[var(--color-text-secondary)]">{t('home.pasos.subtitle')}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="text-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
+        <div class="animate-on-scroll text-center">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
             1
           </div>
@@ -126,7 +126,7 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
           </p>
         </div>
 
-        <div class="text-center">
+        <div class="animate-on-scroll text-center">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
             2
           </div>
@@ -136,7 +136,7 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
           </p>
         </div>
 
-        <div class="text-center">
+        <div class="animate-on-scroll text-center">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
             3
           </div>
@@ -146,7 +146,7 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
           </p>
         </div>
 
-        <div class="text-center">
+        <div class="animate-on-scroll text-center">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
             4
           </div>
@@ -169,8 +169,8 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
   <!-- Stats / Value Props -->
   <section class="py-10">
     <div class="container">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card p-8 text-center">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
+        <div class="animate-on-scroll card p-8 text-center">
           <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-success)]/10 flex items-center justify-center">
             <i class="ph ph-leaf text-2xl text-[var(--color-success)]"></i>
           </div>
@@ -178,7 +178,7 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
           <p class="text-[var(--color-text-secondary)]">{t('home.stats.material')}</p>
         </div>
 
-        <div class="card p-8 text-center">
+        <div class="animate-on-scroll card p-8 text-center">
           <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
             <i class="ph ph-graduation-cap text-2xl text-[var(--color-brown-primary)]"></i>
           </div>
@@ -186,7 +186,7 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
           <p class="text-[var(--color-text-secondary)]">{t('home.stats.escuelas')}</p>
         </div>
 
-        <div class="card p-8 text-center">
+        <div class="animate-on-scroll card p-8 text-center">
           <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-warning)]/10 flex items-center justify-center">
             <i class="ph ph-hand-heart text-2xl text-[var(--color-warning)]"></i>
           </div>
@@ -200,7 +200,7 @@ const featuredProducts = products.filter(p => p.available).slice(0, 4);
   <!-- CTA Section -->
   <section class="py-10">
     <div class="container">
-      <div class="max-w-2xl mx-auto text-center">
+      <div class="animate-on-scroll max-w-2xl mx-auto text-center">
         <h2 class="text-3xl font-semibold mb-4">{t('home.cta.title')}</h2>
         <p class="text-[var(--color-text-secondary)] mb-8">
           {t('home.cta.subtitle')}

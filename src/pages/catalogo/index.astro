@@ -13,8 +13,8 @@ const t = useTranslations(lang);
     <div class="container">
       <!-- Header -->
       <div class="mb-10">
-        <h1 class="text-4xl font-semibold mb-4">{t('catalogo.hero.title')}</h1>
-        <p class="text-[var(--color-text-secondary)] text-lg">
+        <h1 class="animate-hero text-4xl font-semibold mb-4">{t('catalogo.hero.title')}</h1>
+        <p class="animate-hero-delay text-[var(--color-text-secondary)] text-lg">
           {t('catalogo.hero.subtitle')}
         </p>
       </div>
@@ -22,7 +22,7 @@ const t = useTranslations(lang);
       <div class="flex flex-col lg:flex-row gap-8">
         <!-- Filters Sidebar -->
         <aside class="lg:w-72 flex-shrink-0">
-          <div class="card p-6 sticky top-24">
+          <div class="animate-on-scroll card p-6 sticky top-24">
             <div class="flex items-center justify-between mb-6">
               <h2 class="font-semibold text-lg">Filtres</h2>
               <button class="text-sm text-[var(--color-brown-primary)]" id="clear-filters">
@@ -33,15 +33,11 @@ const t = useTranslations(lang);
             <!-- Search -->
             <div class="mb-6">
               <label class="block text-sm font-medium mb-2">Cercar</label>
-              <div class="relative">
-                <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)]"></i>
-                <input
-                  type="text"
-                  id="search-input"
-                  placeholder="Cercar productes..."
-                  class="pl-10"
-                />
-              </div>
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Cercar..."
+              />
             </div>
 
             <!-- Category Filter -->
@@ -120,7 +116,7 @@ const t = useTranslations(lang);
         <!-- Products Grid -->
         <div class="flex-1">
           <!-- Results header -->
-          <div class="flex items-center justify-between mb-6">
+          <div class="animate-on-scroll flex items-center justify-between mb-6">
             <p class="text-[var(--color-text-secondary)]">
               <span id="product-count">{products.length}</span> {t('catalogo.productos')}
             </p>
