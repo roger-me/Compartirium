@@ -495,9 +495,9 @@ export const products: Product[] = [
     pricePerMonth: 140,
     pricePerTerm: 320,
     deposit: 180,
-    image: 'https://images.unsplash.com/photo-1567168544230-b714421e3e38?w=400&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=400&h=400&fit=crop',
     images: [
-      'https://images.unsplash.com/photo-1567168544230-b714421e3e38?w=800',
+      'https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?w=800',
     ],
     available: true,
     stock: 3,

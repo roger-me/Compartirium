@@ -21,96 +21,99 @@ const navLinks = [
 const alternateUrl = getLocalizedPath(currentPathWithoutLang, alternateLang);
 ---
 
-<header class="sticky top-0 z-50 bg-[var(--color-cream)]/95 backdrop-blur-sm">
-  <div class="container pt-12 pb-6 md:pt-14 md:pb-8">
-    <!-- Language Switcher (top right) -->
-    <div class="flex justify-end mb-2">
-      <div class="flex items-center gap-2">
+<header class="fixed top-0 left-0 right-0 z-50 pt-4 px-4">
+  <div class="container">
+    <div class="flex items-center gap-3">
+      <!-- Main Navigation Container -->
+      <div class="flex-1 bg-[var(--color-cream-light)]/90 backdrop-blur-md rounded-[100px] shadow-lg p-[14px]">
+        <nav class="flex items-center justify-between">
+          <!-- Logo -->
+          <a href={getLocalizedPath('', lang)} class="flex items-center gap-3">
+            <img src="/logo.svg" alt="Compartirium" class="h-10 w-10" />
+            <span class="text-xl font-semibold text-[var(--color-text-primary)]">Compartirium</span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center gap-2">
+            {navLinks.map(link => (
+              <a
+                href={link.href}
+                class={`text-base font-medium transition-colors px-4 py-2 rounded-[100px] ${
+                  currentPath.startsWith(link.href)
+                    ? 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]'
+                    : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brown-primary)] hover:bg-[var(--color-brown-primary)]/5'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex items-center gap-3">
+            <a href={getLocalizedPath('client', lang)} class="btn btn-secondary hidden sm:flex">
+              <i class="ph ph-user-plus"></i>
+              {t('nav.crearCuenta')}
+            </a>
+            <a href={getLocalizedPath('client', lang)} class="btn btn-primary">
+              <i class="ph ph-user"></i>
+              <span class="hidden sm:inline">{t('nav.acceder')}</span>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button
+              id="mobile-menu-btn"
+              class="md:hidden p-2 text-[var(--color-text-primary)]"
+              aria-label="Menú"
+            >
+              <i class="ph ph-list text-2xl"></i>
+            </button>
+          </div>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
+          <div class="flex flex-col gap-4">
+            {navLinks.map(link => (
+              <a
+                href={link.href}
+                class={`text-base font-medium py-2 ${
+                  currentPath.startsWith(link.href)
+                    ? 'text-[var(--color-brown-primary)]'
+                    : 'text-[var(--color-text-secondary)]'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Language Switcher Container -->
+      <div class="bg-[var(--color-cream-light)]/90 backdrop-blur-md rounded-[34px] shadow-lg p-[8px] hidden sm:flex items-center gap-0">
         <a
           href={getLocalizedPath(currentPathWithoutLang, 'ca')}
-          class={`flex items-center gap-1.5 px-2 py-1 rounded-md text-sm transition-colors ${
+          class={`flex items-center gap-1 px-2 py-1.5 text-sm transition-colors ${
             lang === 'ca'
-              ? 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)] font-medium'
+              ? 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)] font-medium rounded-[34px]'
               : 'text-[var(--color-text-muted)] hover:text-[var(--color-brown-primary)]'
           }`}
         >
-          <img src="/flag-ca.webp" alt="Català" class="w-5 h-5 rounded-full object-cover" />
-          <span class="hidden sm:inline">CA</span>
+          <img src="/flag-ca.webp" alt="Català" class="w-4 h-4 rounded-full object-cover" />
+          <span>CA</span>
         </a>
         <a
           href={getLocalizedPath(currentPathWithoutLang, 'es')}
-          class={`flex items-center gap-1.5 px-2 py-1 rounded-md text-sm transition-colors ${
+          class={`flex items-center gap-1 px-2 py-1.5 text-sm transition-colors ${
             lang === 'es'
-              ? 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)] font-medium'
+              ? 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)] font-medium rounded-[34px]'
               : 'text-[var(--color-text-muted)] hover:text-[var(--color-brown-primary)]'
           }`}
         >
-          <img src="/flag-es.jpg" alt="Español" class="w-5 h-5 rounded-full object-cover" />
-          <span class="hidden sm:inline">ES</span>
+          <img src="/flag-es.jpg" alt="Español" class="w-4 h-4 rounded-full object-cover" />
+          <span>ES</span>
         </a>
-      </div>
-    </div>
-
-    <nav class="flex items-center justify-between">
-      <!-- Logo -->
-      <a href={getLocalizedPath('', lang)} class="flex items-center gap-3">
-        <img src="/logo.svg" alt="Compartirium" class="h-10 w-10" />
-        <span class="text-xl font-semibold text-[var(--color-text-primary)]">Compartirium</span>
-      </a>
-
-      <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center gap-8">
-        {navLinks.map(link => (
-          <a
-            href={link.href}
-            class={`text-base font-medium transition-colors ${
-              currentPath.startsWith(link.href)
-                ? 'text-[var(--color-brown-primary)]'
-                : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brown-primary)]'
-            }`}
-          >
-            {link.label}
-          </a>
-        ))}
-      </div>
-
-      <!-- CTA Buttons -->
-      <div class="flex items-center gap-3">
-        <a href={getLocalizedPath('client', lang)} class="btn btn-secondary hidden sm:flex">
-          <i class="ph ph-user-plus"></i>
-          {t('nav.crearCuenta')}
-        </a>
-        <a href={getLocalizedPath('client', lang)} class="btn btn-primary">
-          <i class="ph ph-user"></i>
-          <span class="hidden sm:inline">{t('nav.acceder')}</span>
-        </a>
-
-        <!-- Mobile Menu Button -->
-        <button
-          id="mobile-menu-btn"
-          class="md:hidden p-2 text-[var(--color-text-primary)]"
-          aria-label="Menú"
-        >
-          <i class="ph ph-list text-2xl"></i>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Mobile Navigation -->
-    <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2">
-      <div class="flex flex-col gap-4">
-        {navLinks.map(link => (
-          <a
-            href={link.href}
-            class={`text-base font-medium py-2 ${
-              currentPath.startsWith(link.href)
-                ? 'text-[var(--color-brown-primary)]'
-                : 'text-[var(--color-text-secondary)]'
-            }`}
-          >
-            {link.label}
-          </a>
-        ))}
       </div>
     </div>
   </div>

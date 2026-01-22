@@ -30,8 +30,9 @@ const footerLinks = {
 };
 ---
 
-<footer class="footer-bg text-white mt-auto">
-  <div class="container py-16 md:py-20">
+<footer class="mt-auto px-4 pb-4">
+  <div class="container">
+    <div class="footer-bg text-white rounded-[var(--radius-container)] shadow-lg p-[14px] md:p-10">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       <!-- Brand -->
       <div class="sm:col-span-2 lg:col-span-1">
@@ -118,6 +119,7 @@ const footerLinks = {
           </a>
         ))}
       </div>
+    </div>
     </div>
   </div>
 </footer>
