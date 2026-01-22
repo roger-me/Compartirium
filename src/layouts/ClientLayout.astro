@@ -6,13 +6,14 @@ import ClientSidebar from '../components/ClientSidebar.astro';
 
 interface Props {
   title: string;
+  lang?: 'ca' | 'es';
 }
 
-const { title } = Astro.props;
+const { title, lang = 'ca' } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang={lang === 'ca' ? 'ca' : 'es'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,17 +22,17 @@ const { title } = Astro.props;
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header />
+    <Header lang={lang} />
     <main class="flex-1 pt-[120px] pb-6 lg:pb-8">
       <div class="container">
         <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
-          <ClientSidebar />
+          <ClientSidebar lang={lang} />
           <div class="flex-1 min-w-0">
             <slot />
           </div>
         </div>
       </div>
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

@@ -99,7 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 .card {
   background-color: var(--color-cream-light);
   border-radius: var(--radius-container);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
 

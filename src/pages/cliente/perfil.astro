@@ -1,19 +1,21 @@
 ---
 import ClientLayout from '../../layouts/ClientLayout.astro';
 
+const lang = 'ca';
+
 const orderHistory = [
-  { id: 'ORD-2026-0042', date: '15 ene 2026', products: 3, total: 145, status: 'active' },
-  { id: 'ORD-2025-0128', date: '10 dic 2025', products: 2, total: 85, status: 'completed' },
+  { id: 'ORD-2026-0042', date: '15 gen 2026', products: 3, total: 145, status: 'active' },
+  { id: 'ORD-2025-0128', date: '10 des 2025', products: 2, total: 85, status: 'completed' },
   { id: 'ORD-2025-0089', date: '15 oct 2025', products: 1, total: 50, status: 'completed' },
-  { id: 'ORD-2025-0067', date: '5 sep 2025', products: 4, total: 220, status: 'completed' },
+  { id: 'ORD-2025-0067', date: '5 set 2025', products: 4, total: 220, status: 'completed' },
   { id: 'ORD-2025-0034', date: '20 jun 2025', products: 2, total: 95, status: 'completed' },
 ];
 ---
 
-<ClientLayout title="Mi perfil">
+<ClientLayout title="El meu perfil" lang={lang}>
   <div class="mb-8">
-    <h1 class="text-3xl font-semibold mb-2">Mi perfil</h1>
-    <p class="text-[var(--color-text-secondary)]">Gestiona tu información personal y de centro</p>
+    <h1 class="text-3xl font-semibold mb-2">El meu perfil</h1>
+    <p class="text-[var(--color-text-secondary)]">Gestiona la teva informació personal i de centre</p>
   </div>
 
   <div class="grid lg:grid-cols-3 gap-8">
@@ -22,7 +24,7 @@ const orderHistory = [
       <!-- Personal Info -->
       <div class="card p-6">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold">Información personal</h2>
+          <h2 class="text-xl font-semibold">Informació personal</h2>
           <button class="btn btn-secondary text-sm py-2">
             <i class="ph ph-pencil"></i>
             Editar
@@ -31,22 +33,22 @@ const orderHistory = [
 
         <div class="grid sm:grid-cols-2 gap-6">
           <div>
-            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Nombre completo</label>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Nom complet</label>
             <p class="font-medium">María García López</p>
           </div>
           <div>
             <label class="block text-sm text-[var(--color-text-muted)] mb-1">Email</label>
-            <p class="font-medium">maria.garcia@ceipmediterrani.edu</p>
+            <p class="font-medium">maria@ceipmed.cat</p>
           </div>
           <div>
-            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Teléfono</label>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Telèfon</label>
             <p class="font-medium">+34 612 345 678</p>
           </div>
           <div>
-            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Tipo de cuenta</label>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Tipus de compte</label>
             <span class="badge bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]">
               <i class="ph ph-graduation-cap"></i>
-              Escuela
+              Escola
             </span>
           </div>
         </div>
@@ -55,7 +57,7 @@ const orderHistory = [
       <!-- Organization Info -->
       <div class="card p-6">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold">Datos del centro</h2>
+          <h2 class="text-xl font-semibold">Dades del centre</h2>
           <button class="btn btn-secondary text-sm py-2">
             <i class="ph ph-pencil"></i>
             Editar
@@ -64,7 +66,7 @@ const orderHistory = [
 
         <div class="grid sm:grid-cols-2 gap-6">
           <div>
-            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Nombre del centro</label>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Nom del centre</label>
             <p class="font-medium">CEIP Mediterrani</p>
           </div>
           <div>
@@ -72,17 +74,17 @@ const orderHistory = [
             <p class="font-medium">Q0800000A</p>
           </div>
           <div class="sm:col-span-2">
-            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Dirección</label>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Adreça</label>
             <p class="font-medium">Carrer de l'Escola, 15</p>
             <p class="text-[var(--color-text-secondary)]">08001 Barcelona</p>
           </div>
           <div>
-            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Persona de contacto</label>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Persona de contacte</label>
             <p class="font-medium">María García (Coordinadora)</p>
           </div>
           <div>
-            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Horario de recepción</label>
-            <p class="font-medium">L-V 9:00-14:00</p>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Horari de recepció</label>
+            <p class="font-medium">Dl-Dv 9:00-14:00</p>
           </div>
         </div>
       </div>
@@ -90,7 +92,7 @@ const orderHistory = [
       <!-- Order History -->
       <div class="card p-6">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold">Historial de pedidos</h2>
+          <h2 class="text-xl font-semibold">Historial de comandes</h2>
           <button class="btn btn-secondary text-sm py-2">
             <i class="ph ph-download-simple"></i>
             Exportar
@@ -101,11 +103,11 @@ const orderHistory = [
           <table class="w-full">
             <thead>
               <tr class="text-left text-sm text-[var(--color-text-muted)] border-b border-[var(--color-brown-primary)]/10">
-                <th class="pb-3 font-medium">Pedido</th>
-                <th class="pb-3 font-medium">Fecha</th>
-                <th class="pb-3 font-medium">Productos</th>
+                <th class="pb-3 font-medium">Comanda</th>
+                <th class="pb-3 font-medium">Data</th>
+                <th class="pb-3 font-medium">Productes</th>
                 <th class="pb-3 font-medium">Total</th>
-                <th class="pb-3 font-medium">Estado</th>
+                <th class="pb-3 font-medium">Estat</th>
                 <th class="pb-3 font-medium"></th>
               </tr>
             </thead>
@@ -114,16 +116,16 @@ const orderHistory = [
                 <tr class="border-b border-[var(--color-brown-primary)]/5">
                   <td class="py-4 font-medium">{order.id}</td>
                   <td class="py-4 text-[var(--color-text-secondary)]">{order.date}</td>
-                  <td class="py-4 text-[var(--color-text-secondary)]">{order.products} productos</td>
+                  <td class="py-4 text-[var(--color-text-secondary)]">{order.products} productes</td>
                   <td class="py-4 font-medium">{order.total}€</td>
                   <td class="py-4">
                     <span class={`badge ${order.status === 'active' ? 'badge-success' : 'bg-gray-100 text-gray-600'}`}>
-                      {order.status === 'active' ? 'Activo' : 'Completado'}
+                      {order.status === 'active' ? 'Actiu' : 'Completat'}
                     </span>
                   </td>
                   <td class="py-4">
                     <button class="text-[var(--color-brown-primary)] hover:underline">
-                      Ver detalle
+                      Veure detall
                     </button>
                   </td>
                 </tr>
@@ -146,7 +148,7 @@ const orderHistory = [
         <div class="flex justify-center gap-2">
           <span class="badge bg-[var(--color-success)]/10 text-[var(--color-success)]">
             <i class="ph ph-check-circle"></i>
-            Verificado
+            Verificat
           </span>
           <span class="badge bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]">
             Admin
@@ -156,22 +158,22 @@ const orderHistory = [
 
       <!-- Stats -->
       <div class="card p-6">
-        <h3 class="font-semibold mb-4">Estadísticas</h3>
+        <h3 class="font-semibold mb-4">Estadístiques</h3>
         <div class="space-y-4">
           <div class="flex items-center justify-between">
-            <span class="text-[var(--color-text-secondary)]">Total pedidos</span>
+            <span class="text-[var(--color-text-secondary)]">Total comandes</span>
             <span class="font-semibold">8</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-[var(--color-text-secondary)]">Alquileres activos</span>
+            <span class="text-[var(--color-text-secondary)]">Lloguers actius</span>
             <span class="font-semibold">3</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-[var(--color-text-secondary)]">Cliente desde</span>
+            <span class="text-[var(--color-text-secondary)]">Client des de</span>
             <span class="font-semibold">Jun 2025</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-[var(--color-text-secondary)]">Ahorro acumulado</span>
+            <span class="text-[var(--color-text-secondary)]">Estalvi acumulat</span>
             <span class="font-semibold text-[var(--color-success)]">~320€</span>
           </div>
         </div>
@@ -179,23 +181,23 @@ const orderHistory = [
 
       <!-- Billing -->
       <div class="card p-6">
-        <h3 class="font-semibold mb-4">Facturación</h3>
+        <h3 class="font-semibold mb-4">Facturació</h3>
         <div class="space-y-3">
-          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors">
+          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[34px] hover:bg-[var(--color-cream)]/70 transition-colors">
             <div class="flex items-center gap-3">
               <i class="ph ph-file-pdf text-[var(--color-brown-primary)]"></i>
-              <span class="text-sm">Factura Ene 2026</span>
+              <span class="text-sm">Factura Gen 2026</span>
             </div>
             <i class="ph ph-download-simple text-[var(--color-text-muted)]"></i>
           </a>
-          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors">
+          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[34px] hover:bg-[var(--color-cream)]/70 transition-colors">
             <div class="flex items-center gap-3">
               <i class="ph ph-file-pdf text-[var(--color-brown-primary)]"></i>
-              <span class="text-sm">Factura Dic 2025</span>
+              <span class="text-sm">Factura Des 2025</span>
             </div>
             <i class="ph ph-download-simple text-[var(--color-text-muted)]"></i>
           </a>
-          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors">
+          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[34px] hover:bg-[var(--color-cream)]/70 transition-colors">
             <div class="flex items-center gap-3">
               <i class="ph ph-file-pdf text-[var(--color-brown-primary)]"></i>
               <span class="text-sm">Factura Oct 2025</span>
@@ -204,21 +206,21 @@ const orderHistory = [
           </a>
         </div>
         <button class="btn btn-secondary w-full mt-4 text-sm">
-          Ver todas las facturas
+          Veure tot
         </button>
       </div>
 
       <!-- Security -->
       <div class="card p-6">
-        <h3 class="font-semibold mb-4">Seguridad</h3>
+        <h3 class="font-semibold mb-4">Seguretat</h3>
         <div class="space-y-3">
-          <button class="w-full flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors text-left">
+          <button class="w-full flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-[34px] hover:bg-[var(--color-cream)]/70 transition-colors text-left">
             <i class="ph ph-key text-[var(--color-brown-primary)]"></i>
-            <span class="text-sm">Cambiar contraseña</span>
+            <span class="text-sm">Canviar contrasenya</span>
           </button>
-          <button class="w-full flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors text-left">
+          <button class="w-full flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-[34px] hover:bg-[var(--color-cream)]/70 transition-colors text-left">
             <i class="ph ph-bell text-[var(--color-brown-primary)]"></i>
-            <span class="text-sm">Notificaciones</span>
+            <span class="text-sm">Notificacions</span>
           </button>
         </div>
       </div>

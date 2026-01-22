@@ -1,11 +1,19 @@
 ---
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  lang?: 'ca' | 'es';
+}
+
+const { lang = 'ca' } = Astro.props;
+const t = useTranslations(lang);
 const currentPath = Astro.url.pathname;
 
 const navItems = [
-  { href: '/cliente', label: 'Dashboard', icon: 'squares-four', exact: true },
-  { href: '/cliente/alquileres', label: 'Mis alquileres', icon: 'package' },
-  { href: '/cliente/programar', label: 'Programar', icon: 'calendar-check' },
-  { href: '/cliente/perfil', label: 'Mi perfil', icon: 'user' },
+  { href: getLocalizedPath('cliente', lang), label: 'Dashboard', icon: 'squares-four', exact: true },
+  { href: getLocalizedPath('cliente/alquileres', lang), label: t('cliente.sidebar.alquileres'), icon: 'package' },
+  { href: getLocalizedPath('cliente/programar', lang), label: t('cliente.sidebar.programar'), icon: 'calendar-check' },
+  { href: getLocalizedPath('cliente/perfil', lang), label: t('cliente.sidebar.perfil'), icon: 'user' },
 ];
 
 function isActive(href: string, exact: boolean = false) {
@@ -36,7 +44,7 @@ function isActive(href: string, exact: boolean = false) {
         <a
           href={item.href}
           class:list={[
-            'flex items-center gap-3 px-4 py-3 rounded-[var(--radius-button)] transition-colors',
+            'flex items-center gap-3 px-4 py-3 rounded-[34px] transition-colors',
             isActive(item.href, item.exact)
               ? 'nav-item-active'
               : 'nav-item-inactive'
@@ -51,17 +59,17 @@ function isActive(href: string, exact: boolean = false) {
     <!-- Quick Actions -->
     <div class="mt-6 pt-6 border-t border-[var(--color-brown-primary)]/10">
       <a
-        href="/catalogo"
-        class="flex items-center gap-3 px-4 py-3 rounded-[var(--radius-button)] text-[var(--color-text-secondary)] hover:bg-[var(--color-cream)] hover:text-[var(--color-text-primary)] transition-colors"
+        href={getLocalizedPath('catalogo', lang)}
+        class="flex items-center gap-3 px-4 py-3 rounded-[34px] text-[var(--color-text-secondary)] hover:bg-[var(--color-cream)] hover:text-[var(--color-text-primary)] transition-colors"
       >
         <i class="ph ph-plus-circle text-xl"></i>
-        <span class="font-medium">Nuevo pedido</span>
+        <span class="font-medium">{t('client.newOrder')}</span>
       </a>
       <button
-        class="w-full flex items-center gap-3 px-4 py-3 rounded-[var(--radius-button)] text-[var(--color-text-muted)] hover:bg-[var(--color-cream)] hover:text-[var(--color-text-primary)] transition-colors"
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-[34px] text-[var(--color-text-muted)] hover:bg-[var(--color-cream)] hover:text-[var(--color-text-primary)] transition-colors"
       >
         <i class="ph ph-sign-out text-xl"></i>
-        <span class="font-medium">Cerrar sesión</span>
+        <span class="font-medium">{t('cliente.sidebar.cerrar')}</span>
       </button>
     </div>
   </div>
@@ -74,7 +82,7 @@ function isActive(href: string, exact: boolean = false) {
       <a
         href={item.href}
         class:list={[
-          'flex items-center gap-2 px-4 py-2 rounded-[var(--radius-button)] whitespace-nowrap transition-colors flex-shrink-0',
+          'flex items-center gap-2 px-4 py-2 rounded-[34px] whitespace-nowrap transition-colors flex-shrink-0',
           isActive(item.href, item.exact)
             ? 'nav-item-active'
             : 'nav-item-inactive'

@@ -1,39 +1,42 @@
 ---
 import ClientLayout from '../../layouts/ClientLayout.astro';
+import { getLocalizedPath } from '../../i18n/utils';
 
-const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'];
+const lang = 'ca';
+
+const months = ['Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny'];
 const scheduledItems = [
   {
-    month: 'Febrero',
+    month: 'Febrer',
     items: [
-      { product: 'Pack Lectura Primaria 3º-4º', startDate: '3 feb', endDate: '3 abr', status: 'confirmed' },
+      { product: 'Pack Lectura Primària 3r-4t', startDate: '3 feb', endDate: '3 abr', status: 'confirmed' },
     ]
   },
   {
-    month: 'Marzo',
+    month: 'Març',
     items: [
-      { product: 'Ábacos de Madera (Set de 5)', startDate: '1 mar', endDate: '1 may', status: 'pending' },
+      { product: 'Àbacs de Fusta (Set de 5)', startDate: '1 mar', endDate: '1 mai', status: 'pending' },
     ]
   },
   {
     month: 'Abril',
     items: [
-      { product: 'Set Laboratorio de Ciencias', startDate: '15 abr', endDate: '15 jun', status: 'pending' },
-      { product: 'Láminas Anatomía Humana', startDate: '15 abr', endDate: '15 jun', status: 'pending' },
+      { product: 'Set Laboratori de Ciències', startDate: '15 abr', endDate: '15 jun', status: 'pending' },
+      { product: 'Làmines Anatomia Humana', startDate: '15 abr', endDate: '15 jun', status: 'pending' },
     ]
   },
 ];
 ---
 
-<ClientLayout title="Programar alquileres">
+<ClientLayout title="Programar lloguers" lang={lang}>
   <div class="flex items-center justify-between mb-8">
     <div>
-      <h1 class="text-3xl font-semibold mb-2">Programar alquileres</h1>
-      <p class="text-[var(--color-text-secondary)]">Planifica tus alquileres para todo el curso escolar</p>
+      <h1 class="text-3xl font-semibold mb-2">Programar lloguers</h1>
+      <p class="text-[var(--color-text-secondary)]">Planifica els teus lloguers per a tot el curs escolar</p>
     </div>
-    <a href="/catalogo" class="btn btn-primary">
+    <a href={getLocalizedPath('catalogo', lang)} class="btn btn-primary">
       <i class="ph ph-plus"></i>
-      Añadir producto
+      Afegir producte
     </a>
   </div>
 
@@ -42,12 +45,12 @@ const scheduledItems = [
     <div class="lg:col-span-2">
       <div class="card p-6">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold">Calendario del curso 2025-26</h2>
+          <h2 class="text-xl font-semibold">Calendari del curs 2025-26</h2>
           <div class="flex items-center gap-2">
             <button class="p-2 hover:bg-[var(--color-cream)] rounded-lg">
               <i class="ph ph-caret-left"></i>
             </button>
-            <span class="font-medium">Ene - Jun 2026</span>
+            <span class="font-medium">Gen - Jun 2026</span>
             <button class="p-2 hover:bg-[var(--color-cream)] rounded-lg">
               <i class="ph ph-caret-right"></i>
             </button>
@@ -90,7 +93,7 @@ const scheduledItems = [
                               ? 'badge-success'
                               : 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]'
                           }`}>
-                            {item.status === 'confirmed' ? 'Confirmado' : 'Pendiente'}
+                            {item.status === 'confirmed' ? 'Confirmat' : 'Pendent'}
                           </span>
                         </div>
                       </div>
@@ -104,7 +107,7 @@ const scheduledItems = [
                 <div class="ml-14">
                   <button class="w-full p-4 border-2 border-dashed border-[var(--color-brown-primary)]/20 rounded-[var(--radius-button)] text-[var(--color-text-muted)] hover:border-[var(--color-brown-primary)]/40 hover:text-[var(--color-text-secondary)] transition-colors">
                     <i class="ph ph-plus-circle mr-2"></i>
-                    Añadir alquiler para {month}
+                    Afegir lloguer per a {month}
                   </button>
                 </div>
               )}
@@ -118,23 +121,23 @@ const scheduledItems = [
     <div class="space-y-6">
       <!-- Summary -->
       <div class="card p-6">
-        <h3 class="font-semibold mb-4">Resumen del curso</h3>
+        <h3 class="font-semibold mb-4">Resum del curs</h3>
         <div class="space-y-4">
           <div class="flex items-center justify-between">
-            <span class="text-[var(--color-text-secondary)]">Alquileres programados</span>
+            <span class="text-[var(--color-text-secondary)]">Lloguers programats</span>
             <span class="font-semibold">4</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-[var(--color-text-secondary)]">Confirmados</span>
+            <span class="text-[var(--color-text-secondary)]">Confirmats</span>
             <span class="font-semibold text-[var(--color-success)]">1</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-[var(--color-text-secondary)]">Pendientes</span>
+            <span class="text-[var(--color-text-secondary)]">Pendents</span>
             <span class="font-semibold text-[var(--color-warning)]">3</span>
           </div>
           <hr class="border-[var(--color-brown-primary)]/10" />
           <div class="flex items-center justify-between">
-            <span class="text-[var(--color-text-secondary)]">Total estimado</span>
+            <span class="text-[var(--color-text-secondary)]">Total estimat</span>
             <span class="font-semibold text-[var(--color-brown-primary)] text-lg">285€</span>
           </div>
         </div>
@@ -142,13 +145,13 @@ const scheduledItems = [
 
       <!-- Quick Add -->
       <div class="card p-6">
-        <h3 class="font-semibold mb-4">Añadir rápido</h3>
+        <h3 class="font-semibold mb-4">Afegir ràpid</h3>
         <p class="text-sm text-[var(--color-text-muted)] mb-4">
-          Selecciona un producto del catálogo y elige las fechas
+          Selecciona un producte del catàleg i tria les dates
         </p>
-        <a href="/catalogo" class="btn btn-secondary w-full">
+        <a href={getLocalizedPath('catalogo', lang)} class="btn btn-secondary w-full">
           <i class="ph ph-magnifying-glass"></i>
-          Buscar en catálogo
+          Cercar
         </a>
       </div>
 
@@ -159,9 +162,9 @@ const scheduledItems = [
             <i class="ph ph-lightbulb text-[var(--color-brown-primary)]"></i>
           </div>
           <div>
-            <h4 class="font-semibold mb-1">Consejo</h4>
+            <h4 class="font-semibold mb-1">Consell</h4>
             <p class="text-sm text-[var(--color-text-secondary)]">
-              Programa tus alquileres con antelación para asegurar disponibilidad. Los pedidos trimestrales tienen un 30% de descuento.
+              Programa els teus lloguers amb antelació per assegurar disponibilitat. Les comandes trimestrals tenen un 30% de descompte.
             </p>
           </div>
         </div>
@@ -171,11 +174,11 @@ const scheduledItems = [
       <div class="space-y-2">
         <button class="btn btn-primary w-full">
           <i class="ph ph-check-circle"></i>
-          Confirmar todos los pendientes
+          Confirmar tot
         </button>
         <button class="btn btn-secondary w-full">
           <i class="ph ph-download-simple"></i>
-          Exportar calendario
+          Exportar calendari
         </button>
       </div>
     </div>

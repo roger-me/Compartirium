@@ -21,11 +21,11 @@ const navLinks = [
 const alternateUrl = getLocalizedPath(currentPathWithoutLang, alternateLang);
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 pt-4 px-4">
+<header class="fixed top-0 left-0 right-0 z-50 pt-4">
   <div class="container">
     <div class="flex items-center gap-3">
       <!-- Main Navigation Container -->
-      <div class="flex-1 bg-[var(--color-cream-light)]/90 backdrop-blur-md rounded-[100px] shadow-lg p-[14px]">
+      <div id="nav-container" class="flex-1 bg-[var(--color-cream-light)]/90 backdrop-blur-md rounded-[100px] shadow-lg p-[14px] transition-all duration-300">
         <nav class="flex items-center justify-between">
           <!-- Logo -->
           <a href={getLocalizedPath('', lang)} class="flex items-center gap-3">
@@ -49,15 +49,11 @@ const alternateUrl = getLocalizedPath(currentPathWithoutLang, alternateLang);
             ))}
           </div>
 
-          <!-- CTA Buttons -->
+          <!-- CTA Button -->
           <div class="flex items-center gap-3">
-            <a href={getLocalizedPath('cliente', lang)} class="btn btn-secondary hidden sm:flex">
-              <i class="ph ph-user-plus"></i>
-              {t('nav.crearCuenta')}
-            </a>
             <a href={getLocalizedPath('cliente', lang)} class="btn btn-primary">
               <i class="ph ph-user"></i>
-              <span class="hidden sm:inline">{t('nav.acceder')}</span>
+              {t('nav.acceder')}
             </a>
 
             <!-- Mobile Menu Button -->
@@ -122,6 +118,7 @@ const alternateUrl = getLocalizedPath(currentPathWithoutLang, alternateLang);
 <script>
   const menuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const navContainer = document.getElementById('nav-container');
 
   menuBtn?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
@@ -129,6 +126,11 @@ const alternateUrl = getLocalizedPath(currentPathWithoutLang, alternateLang);
     if (icon) {
       icon.classList.toggle('ph-list');
       icon.classList.toggle('ph-x');
+    }
+    // Toggle border radius when menu opens/closes
+    if (navContainer) {
+      const isOpen = !mobileMenu?.classList.contains('hidden');
+      navContainer.style.borderRadius = isOpen ? '34px' : '100px';
     }
   });
 </script>

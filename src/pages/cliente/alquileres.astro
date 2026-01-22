@@ -1,45 +1,48 @@
 ---
 import ClientLayout from '../../layouts/ClientLayout.astro';
+import { getLocalizedPath } from '../../i18n/utils';
+
+const lang = 'ca';
 
 const rentals = [
   {
     id: 1,
-    product: 'Set STEM Robótica Básica',
+    product: 'Set STEM Robòtica Bàsica',
     image: 'https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=200',
-    startDate: '15 ene 2026',
+    startDate: '15 gen 2026',
     endDate: '15 feb 2026',
     status: 'active',
-    statusLabel: 'Entregado',
+    statusLabel: 'Entregat',
     price: 45,
     period: 'mes',
   },
   {
     id: 2,
-    product: 'Globo Terráqueo Interactivo',
+    product: 'Globus Terraqüi Interactiu',
     image: 'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=200',
-    startDate: '10 ene 2026',
+    startDate: '10 gen 2026',
     endDate: '10 mar 2026',
     status: 'active',
-    statusLabel: 'Entregado',
+    statusLabel: 'Entregat',
     price: 70,
-    period: '2 meses',
+    period: '2 mesos',
   },
   {
     id: 3,
-    product: 'Set Matemáticas Manipulativas',
+    product: 'Set Matemàtiques Manipulatives',
     image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=200',
-    startDate: '5 ene 2026',
+    startDate: '5 gen 2026',
     endDate: '5 feb 2026',
     status: 'return',
-    statusLabel: 'Devolver',
+    statusLabel: 'Tornar',
     price: 30,
     period: 'mes',
   },
   {
     id: 4,
-    product: 'Pack STEM Primaria',
+    product: 'Pack STEM Primària',
     image: 'https://images.unsplash.com/photo-1567168544230-b714421e3e38?w=200',
-    startDate: '28 ene 2026',
+    startDate: '28 gen 2026',
     endDate: '28 abr 2026',
     status: 'transit',
     statusLabel: 'En ruta',
@@ -48,14 +51,14 @@ const rentals = [
   },
   {
     id: 5,
-    product: 'Pack Lectura Infantil 3-5 años',
+    product: 'Pack Lectura Infantil 3-5 anys',
     image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=200',
-    startDate: '30 ene 2026',
+    startDate: '30 gen 2026',
     endDate: '30 mar 2026',
     status: 'preparing',
-    statusLabel: 'Preparando',
+    statusLabel: 'Preparant',
     price: 50,
-    period: '2 meses',
+    period: '2 mesos',
   },
 ];
 
@@ -74,15 +77,15 @@ const statusIcons = {
 };
 ---
 
-<ClientLayout title="Mis alquileres">
+<ClientLayout title="Els meus lloguers" lang={lang}>
   <div class="flex items-center justify-between mb-8">
     <div>
-      <h1 class="text-3xl font-semibold mb-2">Mis alquileres</h1>
-      <p class="text-[var(--color-text-secondary)]">Gestiona todos tus alquileres activos y pasados</p>
+      <h1 class="text-3xl font-semibold mb-2">Els meus lloguers</h1>
+      <p class="text-[var(--color-text-secondary)]">Gestiona tots els teus lloguers actius i passats</p>
     </div>
-    <a href="/catalogo" class="btn btn-primary">
+    <a href={getLocalizedPath('catalogo', lang)} class="btn btn-primary">
       <i class="ph ph-plus"></i>
-      Nuevo pedido
+      Nova comanda
     </a>
   </div>
 
@@ -90,20 +93,20 @@ const statusIcons = {
   <div class="card p-4 mb-6">
     <div class="flex flex-wrap gap-4 items-center">
       <div class="flex items-center gap-2">
-        <span class="text-sm text-[var(--color-text-muted)]">Estado:</span>
+        <span class="text-sm text-[var(--color-text-muted)]">Estat:</span>
         <select class="text-sm py-2 px-3 w-auto">
-          <option>Todos</option>
-          <option>Activos</option>
-          <option>Por devolver</option>
-          <option>En preparación</option>
+          <option>Tots</option>
+          <option>Actius</option>
+          <option>Per tornar</option>
+          <option>En preparació</option>
         </select>
       </div>
       <div class="flex items-center gap-2">
         <span class="text-sm text-[var(--color-text-muted)]">Ordenar:</span>
         <select class="text-sm py-2 px-3 w-auto">
-          <option>Fecha devolución</option>
-          <option>Fecha inicio</option>
-          <option>Nombre producto</option>
+          <option>Data devolució</option>
+          <option>Data inici</option>
+          <option>Nom producte</option>
         </select>
       </div>
     </div>
@@ -131,21 +134,21 @@ const statusIcons = {
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm mb-4">
               <div>
-                <p class="text-[var(--color-text-muted)]">Inicio</p>
+                <p class="text-[var(--color-text-muted)]">Inici</p>
                 <p class="font-medium">{rental.startDate}</p>
               </div>
               <div>
-                <p class="text-[var(--color-text-muted)]">Devolución</p>
+                <p class="text-[var(--color-text-muted)]">Devolució</p>
                 <p class={`font-medium ${rental.status === 'return' ? 'text-[var(--color-warning)]' : ''}`}>
                   {rental.endDate}
                 </p>
               </div>
               <div>
-                <p class="text-[var(--color-text-muted)]">Periodo</p>
+                <p class="text-[var(--color-text-muted)]">Període</p>
                 <p class="font-medium">{rental.period}</p>
               </div>
               <div>
-                <p class="text-[var(--color-text-muted)]">Precio</p>
+                <p class="text-[var(--color-text-muted)]">Preu</p>
                 <p class="font-medium text-[var(--color-brown-primary)]">{rental.price}€</p>
               </div>
             </div>
@@ -167,16 +170,16 @@ const statusIcons = {
               {rental.status === 'return' && (
                 <button class="btn btn-primary text-sm py-2">
                   <i class="ph ph-truck"></i>
-                  Programar recogida
+                  Programar recollida
                 </button>
               )}
               <button class="btn btn-secondary text-sm py-2">
                 <i class="ph ph-warning-circle"></i>
-                Incidencia
+                Incidència
               </button>
               <button class="btn btn-secondary text-sm py-2">
                 <i class="ph ph-eye"></i>
-                Ver detalle
+                Veure detall
               </button>
             </div>
           </div>
@@ -187,7 +190,7 @@ const statusIcons = {
 
   <!-- Pagination -->
   <div class="flex items-center justify-between mt-8">
-    <p class="text-sm text-[var(--color-text-muted)]">Mostrando 5 de 5 alquileres</p>
+    <p class="text-sm text-[var(--color-text-muted)]">Mostrant 5 de 5 lloguers</p>
     <div class="flex gap-2">
       <button class="btn btn-secondary py-2 px-4 text-sm" disabled>
         <i class="ph ph-caret-left"></i>
