@@ -192,6 +192,19 @@ export const ui = {
     'cliente.sidebar.programar': 'Programar',
     'cliente.sidebar.perfil': 'Perfil',
     'cliente.sidebar.cerrar': 'Tancar sessió',
+
+    // Client login
+    'client.title': 'Accedir',
+    'client.login.title': 'Accedeix al teu compte',
+    'client.login.subtitle': 'Gestiona els teus lloguers i comandes',
+    'client.login.email': 'Correu electrònic',
+    'client.login.password': 'Contrasenya',
+    'client.login.remember': 'Recorda\'m',
+    'client.login.forgot': 'Has oblidat la contrasenya?',
+    'client.login.submit': 'Accedir',
+    'client.login.noAccount': 'Encara no tens compte?',
+    'client.login.register': 'Crear compte',
+    'client.login.demo': 'Aquesta és una demostració. Les dades no es guarden.',
   },
   es: {
     // Navigation
@@ -379,5 +392,18 @@ export const ui = {
     'cliente.sidebar.programar': 'Programar',
     'cliente.sidebar.perfil': 'Perfil',
     'cliente.sidebar.cerrar': 'Cerrar sesión',
+
+    // Client login
+    'client.title': 'Acceder',
+    'client.login.title': 'Accede a tu cuenta',
+    'client.login.subtitle': 'Gestiona tus alquileres y pedidos',
+    'client.login.email': 'Correo electrónico',
+    'client.login.password': 'Contraseña',
+    'client.login.remember': 'Recuérdame',
+    'client.login.forgot': '¿Olvidaste tu contraseña?',
+    'client.login.submit': 'Acceder',
+    'client.login.noAccount': '¿Aún no tienes cuenta?',
+    'client.login.register': 'Crear cuenta',
+    'client.login.demo': 'Esta es una demostración. Los datos no se guardan.',
   },
 } as const;
