@@ -66,11 +66,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary {
   background-color: var(--color-brown-primary);
-  color: white;
+  color: white !important;
 }
 
 .btn-primary:hover {
   background-color: var(--color-brown-dark);
+  color: white !important;
+}
+
+.btn-primary i,
+.btn-primary span {
+  color: white !important;
 }
 
 .btn-secondary {
@@ -81,7 +87,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary:hover {
   background-color: var(--color-brown-primary);
-  color: white;
+  color: white !important;
+}
+
+.btn-secondary:hover i,
+.btn-secondary:hover span {
+  color: white !important;
 }
 
 /* Card base */
@@ -97,6 +108,18 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 64px;
+  }
 }
 
 /* Badge */

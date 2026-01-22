@@ -22,9 +22,9 @@ const { title } = Astro.props;
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />
-    <main class="flex-1 py-8">
+    <main class="flex-1 py-6 lg:py-8">
       <div class="container">
-        <div class="flex gap-8">
+        <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
           <ClientSidebar />
           <div class="flex-1 min-w-0">
             <slot />

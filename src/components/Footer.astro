@@ -20,17 +20,17 @@ const footerLinks = {
 };
 ---
 
-<footer class="bg-[var(--color-brown-primary)] text-white mt-auto">
-  <div class="container py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<footer class="footer-bg text-white mt-auto">
+  <div class="container py-16 md:py-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       <!-- Brand -->
-      <div class="lg:col-span-1">
+      <div class="sm:col-span-2 lg:col-span-1">
         <div class="flex items-center gap-3 mb-4">
           <img src="/logo-white.svg" alt="Compartirium" class="h-10 w-10" />
           <span class="text-xl font-semibold">Compartirium</span>
         </div>
-        <p class="text-white/80 mb-4 italic">"Més que compartir"</p>
-        <p class="text-white/70 text-sm">
+        <p class="footer-text-muted mb-4 italic">"Més que compartir"</p>
+        <p class="footer-text-light text-sm">
           Material educativo en alquiler para escuelas y familias. Sostenible, asequible, circular.
         </p>
       </div>
@@ -41,7 +41,7 @@ const footerLinks = {
         <ul class="space-y-2">
           {footerLinks.navegacion.map(link => (
             <li>
-              <a href={link.href} class="text-white/70 hover:text-white transition-colors">
+              <a href={link.href} class="footer-link">
                 {link.label}
               </a>
             </li>
@@ -55,7 +55,7 @@ const footerLinks = {
         <ul class="space-y-2">
           {footerLinks.cuenta.map(link => (
             <li>
-              <a href={link.href} class="text-white/70 hover:text-white transition-colors">
+              <a href={link.href} class="footer-link">
                 {link.label}
               </a>
             </li>
@@ -66,7 +66,7 @@ const footerLinks = {
       <!-- Contact -->
       <div>
         <h4 class="font-semibold mb-4">Contacto</h4>
-        <ul class="space-y-3 text-white/70">
+        <ul class="space-y-3 footer-text-light">
           <li class="flex items-center gap-2">
             <i class="ph ph-envelope"></i>
             <span>hola@compartirium.es</span>
@@ -83,27 +83,27 @@ const footerLinks = {
 
         <!-- Social -->
         <div class="flex gap-4 mt-6">
-          <a href="#" class="text-white/70 hover:text-white transition-colors" aria-label="Instagram">
-            <i class="ph ph-instagram-logo text-xl"></i>
+          <a href="#" class="footer-link text-xl" aria-label="Instagram">
+            <i class="ph ph-instagram-logo"></i>
           </a>
-          <a href="#" class="text-white/70 hover:text-white transition-colors" aria-label="LinkedIn">
-            <i class="ph ph-linkedin-logo text-xl"></i>
+          <a href="#" class="footer-link text-xl" aria-label="LinkedIn">
+            <i class="ph ph-linkedin-logo"></i>
           </a>
-          <a href="#" class="text-white/70 hover:text-white transition-colors" aria-label="Twitter">
-            <i class="ph ph-twitter-logo text-xl"></i>
+          <a href="#" class="footer-link text-xl" aria-label="Twitter">
+            <i class="ph ph-twitter-logo"></i>
           </a>
         </div>
       </div>
     </div>
 
     <!-- Bottom -->
-    <div class="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-white/60 text-sm">
+    <div class="border-t border-white/20 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="footer-text-muted text-sm">
         © {currentYear} Compartirium. Todos los derechos reservados.
       </p>
-      <div class="flex gap-6 text-sm">
+      <div class="flex flex-wrap justify-center gap-4 md:gap-6 text-sm">
         {footerLinks.legal.map(link => (
-          <a href={link.href} class="text-white/60 hover:text-white transition-colors">
+          <a href={link.href} class="footer-link-muted">
             {link.label}
           </a>
         ))}
@@ -111,3 +111,35 @@ const footerLinks = {
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-bg {
+    background-color: var(--color-brown-primary);
+  }
+
+  .footer-text-light {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer-text-muted {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: white;
+  }
+
+  .footer-link-muted {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.2s ease;
+  }
+
+  .footer-link-muted:hover {
+    color: white;
+  }
+</style>

@@ -10,12 +10,13 @@ const navItems = [
 
 function isActive(href: string, exact: boolean = false) {
   if (exact) {
-    return currentPath === href;
+    return currentPath === href || currentPath === href + '/';
   }
   return currentPath.startsWith(href);
 }
 ---
 
+<!-- Desktop Sidebar -->
 <aside class="w-64 flex-shrink-0 hidden lg:block">
   <div class="card p-4 sticky top-24">
     <!-- User Info -->
@@ -34,11 +35,12 @@ function isActive(href: string, exact: boolean = false) {
       {navItems.map(item => (
         <a
           href={item.href}
-          class={`flex items-center gap-3 px-4 py-3 rounded-[var(--radius-button)] transition-colors ${
+          class:list={[
+            'flex items-center gap-3 px-4 py-3 rounded-[var(--radius-button)] transition-colors',
             isActive(item.href, item.exact)
-              ? 'bg-[var(--color-brown-primary)] text-white'
-              : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-cream)] hover:text-[var(--color-text-primary)]'
-          }`}
+              ? 'nav-item-active'
+              : 'nav-item-inactive'
+          ]}
         >
           <i class={`ph ph-${item.icon} text-xl`}></i>
           <span class="font-medium">{item.label}</span>
@@ -66,16 +68,17 @@ function isActive(href: string, exact: boolean = false) {
 </aside>
 
 <!-- Mobile Navigation -->
-<div class="lg:hidden mb-6">
-  <div class="card p-2 flex overflow-x-auto gap-2">
+<div class="lg:hidden mb-6 w-full">
+  <div class="card p-2 flex overflow-x-auto gap-2 no-scrollbar">
     {navItems.map(item => (
       <a
         href={item.href}
-        class={`flex items-center gap-2 px-4 py-2 rounded-[var(--radius-button)] whitespace-nowrap transition-colors ${
+        class:list={[
+          'flex items-center gap-2 px-4 py-2 rounded-[var(--radius-button)] whitespace-nowrap transition-colors flex-shrink-0',
           isActive(item.href, item.exact)
-            ? 'bg-[var(--color-brown-primary)] text-white'
-            : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-cream)]'
-        }`}
+            ? 'nav-item-active'
+            : 'nav-item-inactive'
+        ]}
       >
         <i class={`ph ph-${item.icon}`}></i>
         <span class="text-sm font-medium">{item.label}</span>
@@ -83,3 +86,33 @@ function isActive(href: string, exact: boolean = false) {
     ))}
   </div>
 </div>
+
+<style>
+  .nav-item-active {
+    background-color: var(--color-brown-primary);
+    color: white !important;
+  }
+
+  .nav-item-active i,
+  .nav-item-active span {
+    color: white !important;
+  }
+
+  .nav-item-inactive {
+    color: var(--color-text-secondary);
+  }
+
+  .nav-item-inactive:hover {
+    background-color: var(--color-cream);
+    color: var(--color-text-primary);
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+</style>
