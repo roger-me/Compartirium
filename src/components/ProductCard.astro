@@ -1,0 +1,58 @@
+---
+interface Props {
+  slug: string;
+  name: string;
+  category: string;
+  ageRange: string;
+  pricePerWeek: number;
+  image: string;
+  available: boolean;
+}
+
+const { slug, name, category, ageRange, pricePerWeek, image, available } = Astro.props;
+---
+
+<a href={`/catalogo/${slug}`} class="card group cursor-pointer transition-transform hover:-translate-y-1">
+  <!-- Image -->
+  <div class="aspect-square bg-white overflow-hidden">
+    <img
+      src={image}
+      alt={name}
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+    />
+  </div>
+
+  <!-- Content -->
+  <div class="p-5">
+    <div class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] mb-2">
+      <span>{category}</span>
+      <span>·</span>
+      <span>{ageRange}</span>
+    </div>
+
+    <h3 class="font-semibold text-lg text-[var(--color-text-primary)] mb-3 line-clamp-2">
+      {name}
+    </h3>
+
+    <div class="flex items-center justify-between">
+      <div>
+        <span class="text-[var(--color-brown-primary)] font-semibold">desde {pricePerWeek}€</span>
+        <span class="text-[var(--color-text-muted)] text-sm">/semana</span>
+      </div>
+
+      <span class={`badge ${available ? 'badge-success' : 'badge-warning'}`}>
+        <i class={`ph ph-${available ? 'check-circle' : 'clock'}`}></i>
+        {available ? 'Disponible' : 'Próximamente'}
+      </span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,197 @@
+---
+import ClientLayout from '../../layouts/ClientLayout.astro';
+---
+
+<ClientLayout title="Dashboard">
+  <!-- Welcome -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-semibold mb-2">Hola, María</h1>
+    <p class="text-[var(--color-text-secondary)]">Bienvenida a tu área de cliente. Aquí puedes gestionar todos tus alquileres.</p>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+    <div class="card p-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+          <i class="ph ph-package text-xl text-[var(--color-brown-primary)]"></i>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold">3</p>
+          <p class="text-sm text-[var(--color-text-muted)]">Alquileres activos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-[var(--color-success)]/10 flex items-center justify-center">
+          <i class="ph ph-truck text-xl text-[var(--color-success)]"></i>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold">2</p>
+          <p class="text-sm text-[var(--color-text-muted)]">Entregas próximas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card p-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-[var(--color-warning)]/10 flex items-center justify-center">
+          <i class="ph ph-arrow-counter-clockwise text-xl text-[var(--color-warning)]"></i>
+        </div>
+        <div>
+          <p class="text-2xl font-semibold">1</p>
+          <p class="text-sm text-[var(--color-text-muted)]">Devolución pendiente</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upcoming Deliveries -->
+  <div class="card p-6 mb-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-semibold">Próximas entregas</h2>
+      <a href="/cliente/alquileres" class="text-sm text-[var(--color-brown-primary)] hover:underline">
+        Ver todas
+      </a>
+    </div>
+
+    <div class="space-y-4">
+      <!-- Delivery 1 -->
+      <div class="flex items-center gap-4 p-4 bg-[var(--color-cream)] rounded-[var(--radius-button)]">
+        <div class="w-16 h-16 rounded-lg bg-white overflow-hidden flex-shrink-0">
+          <img
+            src="https://images.unsplash.com/photo-1567168544230-b714421e3e38?w=100&h=100&fit=crop"
+            alt="Pack STEM"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-medium truncate">Pack STEM Primaria</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Entrega: Lunes 28 ene, 9:00-14:00</p>
+        </div>
+        <span class="badge bg-[var(--color-success)]/10 text-[var(--color-success)]">
+          <i class="ph ph-truck"></i>
+          En ruta
+        </span>
+      </div>
+
+      <!-- Delivery 2 -->
+      <div class="flex items-center gap-4 p-4 bg-[var(--color-cream)] rounded-[var(--radius-button)]">
+        <div class="w-16 h-16 rounded-lg bg-white overflow-hidden flex-shrink-0">
+          <img
+            src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=100&h=100&fit=crop"
+            alt="Pack Lectura"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-medium truncate">Pack Lectura Infantil 3-5 años</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Entrega: Miércoles 30 ene, 9:00-14:00</p>
+        </div>
+        <span class="badge bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]">
+          <i class="ph ph-clock"></i>
+          Preparando
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Rentals Summary -->
+  <div class="card p-6 mb-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-semibold">Alquileres activos</h2>
+      <a href="/cliente/alquileres" class="text-sm text-[var(--color-brown-primary)] hover:underline">
+        Ver todos
+      </a>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="text-left text-sm text-[var(--color-text-muted)] border-b border-[var(--color-brown-primary)]/10">
+            <th class="pb-3 font-medium">Producto</th>
+            <th class="pb-3 font-medium">Periodo</th>
+            <th class="pb-3 font-medium">Estado</th>
+            <th class="pb-3 font-medium">Devolución</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm">
+          <tr class="border-b border-[var(--color-brown-primary)]/5">
+            <td class="py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-[var(--color-cream)] overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=100" alt="" class="w-full h-full object-cover" />
+                </div>
+                <span class="font-medium">Set STEM Robótica Básica</span>
+              </div>
+            </td>
+            <td class="py-4 text-[var(--color-text-secondary)]">15 ene - 15 feb</td>
+            <td class="py-4">
+              <span class="badge badge-success">Entregado</span>
+            </td>
+            <td class="py-4 text-[var(--color-text-secondary)]">15 feb 2026</td>
+          </tr>
+          <tr class="border-b border-[var(--color-brown-primary)]/5">
+            <td class="py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-[var(--color-cream)] overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=100" alt="" class="w-full h-full object-cover" />
+                </div>
+                <span class="font-medium">Globo Terráqueo Interactivo</span>
+              </div>
+            </td>
+            <td class="py-4 text-[var(--color-text-secondary)]">10 ene - 10 mar</td>
+            <td class="py-4">
+              <span class="badge badge-success">Entregado</span>
+            </td>
+            <td class="py-4 text-[var(--color-text-secondary)]">10 mar 2026</td>
+          </tr>
+          <tr>
+            <td class="py-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-[var(--color-cream)] overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=100" alt="" class="w-full h-full object-cover" />
+                </div>
+                <span class="font-medium">Set Matemáticas Manipulativas</span>
+              </div>
+            </td>
+            <td class="py-4 text-[var(--color-text-secondary)]">5 ene - 5 feb</td>
+            <td class="py-4">
+              <span class="badge badge-warning">Devolver</span>
+            </td>
+            <td class="py-4 text-[var(--color-warning)] font-medium">5 feb 2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <a href="/catalogo" class="card p-6 hover:-translate-y-1 transition-transform">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+          <i class="ph ph-plus-circle text-xl text-[var(--color-brown-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="font-semibold">Nuevo pedido</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Explora el catálogo y añade productos</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="/cliente/programar" class="card p-6 hover:-translate-y-1 transition-transform">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+          <i class="ph ph-calendar-check text-xl text-[var(--color-brown-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="font-semibold">Programar alquiler</h3>
+          <p class="text-sm text-[var(--color-text-muted)]">Planifica entregas futuras</p>
+        </div>
+      </div>
+    </a>
+  </div>
+</ClientLayout>

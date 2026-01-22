@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-brown-primary: #7D6118;
+  --color-brown-light: #A68B3D;
+  --color-brown-dark: #5C4812;
+
+  /* Backgrounds */
+  --color-cream: #F8EBDA;
+  --color-cream-light: #FDF8F0;
+
+  /* Text */
+  --color-text-primary: #3D3225;
+  --color-text-secondary: #6B5D4D;
+  --color-text-muted: #9B8B7A;
+
+  /* Semantic */
+  --color-success: #5C7C5C;
+  --color-warning: #C4930A;
+  --color-error: #B54A4A;
+
+  /* Border Radius */
+  --radius-container: 28px;
+  --radius-button: 14px;
+  --radius-small: 8px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(61, 50, 37, 0.05);
+  --shadow-md: 0 4px 12px rgba(61, 50, 37, 0.08);
+  --shadow-lg: 0 12px 32px rgba(61, 50, 37, 0.12);
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+
+/* Button base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-button);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-brown-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-brown-dark);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-brown-primary);
+  border: 1.5px solid var(--color-brown-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-brown-primary);
+  color: white;
+}
+
+/* Card base */
+.card {
+  background-color: var(--color-cream-light);
+  border-radius: var(--radius-container);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: var(--radius-small);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background-color: rgba(92, 124, 92, 0.15);
+  color: var(--color-success);
+}
+
+.badge-warning {
+  background-color: rgba(196, 147, 10, 0.15);
+  color: var(--color-warning);
+}
+
+/* Links */
+a {
+  color: var(--color-brown-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-brown-dark);
+}
+
+/* Form inputs */
+input, select, textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(125, 97, 24, 0.2);
+  border-radius: var(--radius-button);
+  background-color: white;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-brown-primary);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-text-muted);
+}

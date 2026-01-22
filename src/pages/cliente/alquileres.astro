@@ -1,0 +1,201 @@
+---
+import ClientLayout from '../../layouts/ClientLayout.astro';
+
+const rentals = [
+  {
+    id: 1,
+    product: 'Set STEM Robótica Básica',
+    image: 'https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=200',
+    startDate: '15 ene 2026',
+    endDate: '15 feb 2026',
+    status: 'active',
+    statusLabel: 'Entregado',
+    price: 45,
+    period: 'mes',
+  },
+  {
+    id: 2,
+    product: 'Globo Terráqueo Interactivo',
+    image: 'https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=200',
+    startDate: '10 ene 2026',
+    endDate: '10 mar 2026',
+    status: 'active',
+    statusLabel: 'Entregado',
+    price: 70,
+    period: '2 meses',
+  },
+  {
+    id: 3,
+    product: 'Set Matemáticas Manipulativas',
+    image: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=200',
+    startDate: '5 ene 2026',
+    endDate: '5 feb 2026',
+    status: 'return',
+    statusLabel: 'Devolver',
+    price: 30,
+    period: 'mes',
+  },
+  {
+    id: 4,
+    product: 'Pack STEM Primaria',
+    image: 'https://images.unsplash.com/photo-1567168544230-b714421e3e38?w=200',
+    startDate: '28 ene 2026',
+    endDate: '28 abr 2026',
+    status: 'transit',
+    statusLabel: 'En ruta',
+    price: 320,
+    period: 'trimestre',
+  },
+  {
+    id: 5,
+    product: 'Pack Lectura Infantil 3-5 años',
+    image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=200',
+    startDate: '30 ene 2026',
+    endDate: '30 mar 2026',
+    status: 'preparing',
+    statusLabel: 'Preparando',
+    price: 50,
+    period: '2 meses',
+  },
+];
+
+const statusStyles = {
+  active: 'badge-success',
+  return: 'badge-warning',
+  transit: 'bg-[var(--color-success)]/10 text-[var(--color-success)]',
+  preparing: 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]',
+};
+
+const statusIcons = {
+  active: 'check-circle',
+  return: 'arrow-counter-clockwise',
+  transit: 'truck',
+  preparing: 'clock',
+};
+---
+
+<ClientLayout title="Mis alquileres">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-3xl font-semibold mb-2">Mis alquileres</h1>
+      <p class="text-[var(--color-text-secondary)]">Gestiona todos tus alquileres activos y pasados</p>
+    </div>
+    <a href="/catalogo" class="btn btn-primary">
+      <i class="ph ph-plus"></i>
+      Nuevo pedido
+    </a>
+  </div>
+
+  <!-- Filters -->
+  <div class="card p-4 mb-6">
+    <div class="flex flex-wrap gap-4 items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-sm text-[var(--color-text-muted)]">Estado:</span>
+        <select class="text-sm py-2 px-3 w-auto">
+          <option>Todos</option>
+          <option>Activos</option>
+          <option>Por devolver</option>
+          <option>En preparación</option>
+        </select>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-sm text-[var(--color-text-muted)]">Ordenar:</span>
+        <select class="text-sm py-2 px-3 w-auto">
+          <option>Fecha devolución</option>
+          <option>Fecha inicio</option>
+          <option>Nombre producto</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rentals List -->
+  <div class="space-y-4">
+    {rentals.map(rental => (
+      <div class="card p-6">
+        <div class="flex flex-col sm:flex-row gap-6">
+          <!-- Image -->
+          <div class="w-full sm:w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
+            <img src={rental.image} alt={rental.product} class="w-full h-full object-cover" />
+          </div>
+
+          <!-- Info -->
+          <div class="flex-1">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="font-semibold text-lg">{rental.product}</h3>
+              <span class={`badge ${statusStyles[rental.status]}`}>
+                <i class={`ph ph-${statusIcons[rental.status]}`}></i>
+                {rental.statusLabel}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm mb-4">
+              <div>
+                <p class="text-[var(--color-text-muted)]">Inicio</p>
+                <p class="font-medium">{rental.startDate}</p>
+              </div>
+              <div>
+                <p class="text-[var(--color-text-muted)]">Devolución</p>
+                <p class={`font-medium ${rental.status === 'return' ? 'text-[var(--color-warning)]' : ''}`}>
+                  {rental.endDate}
+                </p>
+              </div>
+              <div>
+                <p class="text-[var(--color-text-muted)]">Periodo</p>
+                <p class="font-medium">{rental.period}</p>
+              </div>
+              <div>
+                <p class="text-[var(--color-text-muted)]">Precio</p>
+                <p class="font-medium text-[var(--color-brown-primary)]">{rental.price}€</p>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-wrap gap-2">
+              {rental.status === 'active' && (
+                <>
+                  <button class="btn btn-secondary text-sm py-2">
+                    <i class="ph ph-arrows-clockwise"></i>
+                    Renovar
+                  </button>
+                  <button class="btn btn-secondary text-sm py-2">
+                    <i class="ph ph-calendar-plus"></i>
+                    Ampliar
+                  </button>
+                </>
+              )}
+              {rental.status === 'return' && (
+                <button class="btn btn-primary text-sm py-2">
+                  <i class="ph ph-truck"></i>
+                  Programar recogida
+                </button>
+              )}
+              <button class="btn btn-secondary text-sm py-2">
+                <i class="ph ph-warning-circle"></i>
+                Incidencia
+              </button>
+              <button class="btn btn-secondary text-sm py-2">
+                <i class="ph ph-eye"></i>
+                Ver detalle
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Pagination -->
+  <div class="flex items-center justify-between mt-8">
+    <p class="text-sm text-[var(--color-text-muted)]">Mostrando 5 de 5 alquileres</p>
+    <div class="flex gap-2">
+      <button class="btn btn-secondary py-2 px-4 text-sm" disabled>
+        <i class="ph ph-caret-left"></i>
+      </button>
+      <button class="btn btn-primary py-2 px-4 text-sm">1</button>
+      <button class="btn btn-secondary py-2 px-4 text-sm" disabled>
+        <i class="ph ph-caret-right"></i>
+      </button>
+    </div>
+  </div>
+</ClientLayout>

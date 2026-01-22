@@ -1,0 +1,233 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, getProductBySlug } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map(product => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+
+const relatedProducts = products
+  .filter(p => p.categorySlug === product.categorySlug && p.slug !== product.slug)
+  .slice(0, 3);
+
+const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+const currentMonth = new Date().getMonth();
+const currentYear = new Date().getFullYear();
+
+// Generate calendar days
+const calendarDays = Array.from({ length: 35 }, (_, i) => {
+  const day = i - 2;
+  const isValid = day > 0 && day <= 31;
+  const isAvailable = isValid && Math.random() > 0.2;
+  return { day, isValid, isAvailable };
+});
+---
+
+<Layout title={product.name} description={product.description}>
+  <section class="py-12">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] mb-8">
+        <a href="/" class="hover:text-[var(--color-brown-primary)]">Inicio</a>
+        <i class="ph ph-caret-right"></i>
+        <a href="/catalogo" class="hover:text-[var(--color-brown-primary)]">Catálogo</a>
+        <i class="ph ph-caret-right"></i>
+        <span class="text-[var(--color-text-primary)]">{product.name}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Images -->
+        <div>
+          <div class="card overflow-hidden mb-4">
+            <img
+              src={product.image}
+              alt={product.name}
+              class="w-full aspect-square object-cover"
+            />
+          </div>
+          {product.images.length > 1 && (
+            <div class="grid grid-cols-4 gap-3">
+              {product.images.map((img, i) => (
+                <button class={`card overflow-hidden ${i === 0 ? 'ring-2 ring-[var(--color-brown-primary)]' : ''}`}>
+                  <img src={img} alt="" class="w-full aspect-square object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <!-- Product Info -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="badge badge-success">
+              <i class={`ph ph-${product.available ? 'check-circle' : 'clock'}`}></i>
+              {product.available ? 'Disponible' : 'Próximamente'}
+            </span>
+            <span class="text-sm text-[var(--color-text-muted)]">
+              {product.category} · {product.ageRange}
+            </span>
+          </div>
+
+          <h1 class="text-3xl font-semibold mb-4">{product.name}</h1>
+
+          <p class="text-[var(--color-text-secondary)] mb-6">
+            {product.description}
+          </p>
+
+          <!-- Pricing -->
+          <div class="card p-6 mb-6">
+            <h3 class="font-semibold mb-4">Precios de alquiler</h3>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="text-center p-4 rounded-[var(--radius-button)] bg-[var(--color-cream)]">
+                <p class="text-2xl font-semibold text-[var(--color-brown-primary)]">{product.pricePerWeek}€</p>
+                <p class="text-sm text-[var(--color-text-muted)]">por semana</p>
+              </div>
+              <div class="text-center p-4 rounded-[var(--radius-button)] bg-[var(--color-cream)]">
+                <p class="text-2xl font-semibold text-[var(--color-brown-primary)]">{product.pricePerMonth}€</p>
+                <p class="text-sm text-[var(--color-text-muted)]">por mes</p>
+              </div>
+              <div class="text-center p-4 rounded-[var(--radius-button)] bg-[var(--color-brown-primary)]/10">
+                <p class="text-2xl font-semibold text-[var(--color-brown-primary)]">{product.pricePerTerm}€</p>
+                <p class="text-sm text-[var(--color-text-muted)]">por trimestre</p>
+              </div>
+            </div>
+            {product.deposit > 0 && (
+              <p class="text-sm text-[var(--color-text-muted)] mt-4">
+                <i class="ph ph-info"></i> Depósito reembolsable: {product.deposit}€
+              </p>
+            )}
+          </div>
+
+          <!-- Availability Calendar -->
+          <div class="card p-6 mb-6">
+            <h3 class="font-semibold mb-4">Disponibilidad</h3>
+            <div class="flex items-center justify-between mb-4">
+              <button class="p-2 hover:bg-[var(--color-cream)] rounded-lg">
+                <i class="ph ph-caret-left"></i>
+              </button>
+              <span class="font-medium">{months[currentMonth]} {currentYear}</span>
+              <button class="p-2 hover:bg-[var(--color-cream)] rounded-lg">
+                <i class="ph ph-caret-right"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-7 gap-1 text-center text-sm">
+              {['L', 'M', 'X', 'J', 'V', 'S', 'D'].map(day => (
+                <div class="py-2 text-[var(--color-text-muted)] font-medium">{day}</div>
+              ))}
+              {calendarDays.map(({ day, isValid, isAvailable }) => (
+                  <div
+                    class={`py-2 rounded-lg ${
+                      !isValid
+                        ? 'text-transparent'
+                        : isAvailable
+                          ? 'bg-[var(--color-success)]/10 text-[var(--color-success)] cursor-pointer hover:bg-[var(--color-success)]/20'
+                          : 'bg-gray-100 text-gray-400'
+                    }`}
+                  >
+                    {isValid ? day : ''}
+                  </div>
+                ))}
+            </div>
+            <div class="flex items-center gap-6 mt-4 text-sm">
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-[var(--color-success)]/20"></div>
+                <span class="text-[var(--color-text-muted)]">Disponible</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-4 h-4 rounded bg-gray-100"></div>
+                <span class="text-[var(--color-text-muted)]">No disponible</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button class="btn btn-primary flex-1">
+              <i class="ph ph-shopping-cart"></i>
+              Añadir al carrito
+            </button>
+            <button class="btn btn-secondary">
+              <i class="ph ph-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details Tabs -->
+      <div class="mt-16">
+        <div class="border-b border-[var(--color-brown-primary)]/20 mb-8">
+          <nav class="flex gap-8">
+            <button class="py-4 border-b-2 border-[var(--color-brown-primary)] text-[var(--color-brown-primary)] font-medium">
+              Información pedagógica
+            </button>
+            <button class="py-4 border-b-2 border-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+              Incluye
+            </button>
+            <button class="py-4 border-b-2 border-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]">
+              Condiciones
+            </button>
+          </nav>
+        </div>
+
+        <div class="max-w-3xl">
+          <h3 class="font-semibold text-xl mb-4">Valor pedagógico</h3>
+          <p class="text-[var(--color-text-secondary)] mb-6">
+            {product.pedagogicalInfo}
+          </p>
+
+          <h3 class="font-semibold text-xl mb-4">El pack incluye</h3>
+          <ul class="space-y-2 mb-6">
+            {product.includes.map(item => (
+              <li class="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                <i class="ph ph-check-circle text-[var(--color-success)]"></i>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <h3 class="font-semibold text-xl mb-4">Estado del material</h3>
+          <div class="flex items-center gap-3">
+            <span class={`badge ${
+              product.condition === 'nuevo'
+                ? 'bg-[var(--color-success)]/10 text-[var(--color-success)]'
+                : product.condition === 'excelente'
+                  ? 'bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]'
+                  : 'bg-[var(--color-warning)]/10 text-[var(--color-warning)]'
+            }`}>
+              {product.condition.charAt(0).toUpperCase() + product.condition.slice(1)}
+            </span>
+            <span class="text-[var(--color-text-muted)] text-sm">
+              {product.stock > 0 ? `${product.stock} unidades disponibles` : 'Sin stock'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      {relatedProducts.length > 0 && (
+        <div class="mt-16">
+          <h2 class="text-2xl font-semibold mb-8">Productos relacionados</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedProducts.map(p => (
+              <ProductCard
+                slug={p.slug}
+                name={p.name}
+                category={p.category}
+                ageRange={p.ageRange}
+                pricePerWeek={p.pricePerWeek}
+                image={p.image}
+                available={p.available}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

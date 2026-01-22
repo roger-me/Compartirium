@@ -1,0 +1,171 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, categories, stages } from '../../data/products';
+---
+
+<Layout title="Catálogo">
+  <section class="py-12">
+    <div class="container">
+      <!-- Header -->
+      <div class="mb-10">
+        <h1 class="text-4xl font-semibold mb-4">Catálogo</h1>
+        <p class="text-[var(--color-text-secondary)] text-lg">
+          Explora nuestro catálogo de material educativo disponible para alquiler
+        </p>
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Filters Sidebar -->
+        <aside class="lg:w-72 flex-shrink-0">
+          <div class="card p-6 sticky top-24">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="font-semibold text-lg">Filtros</h2>
+              <button class="text-sm text-[var(--color-brown-primary)]" id="clear-filters">
+                Limpiar
+              </button>
+            </div>
+
+            <!-- Search -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-2">Buscar</label>
+              <div class="relative">
+                <i class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)]"></i>
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Buscar productos..."
+                  class="pl-10"
+                />
+              </div>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3">Categoría</label>
+              <div class="space-y-2">
+                {categories.map(category => (
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="category"
+                      value={category.slug}
+                      class="w-4 h-4 rounded border-[var(--color-text-muted)] text-[var(--color-brown-primary)] focus:ring-[var(--color-brown-primary)]"
+                    />
+                    <span class="text-sm">{category.name}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Stage Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3">Etapa educativa</label>
+              <div class="space-y-2">
+                {stages.map(stage => (
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="stage"
+                      value={stage.slug}
+                      class="w-4 h-4 rounded border-[var(--color-text-muted)] text-[var(--color-brown-primary)] focus:ring-[var(--color-brown-primary)]"
+                    />
+                    <span class="text-sm">{stage.name} ({stage.ageRange})</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Availability Filter -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium mb-3">Disponibilidad</label>
+              <div class="space-y-2">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="availability"
+                    value="available"
+                    class="w-4 h-4 rounded border-[var(--color-text-muted)] text-[var(--color-brown-primary)] focus:ring-[var(--color-brown-primary)]"
+                  />
+                  <span class="text-sm">Disponible ahora</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="availability"
+                    value="soon"
+                    class="w-4 h-4 rounded border-[var(--color-text-muted)] text-[var(--color-brown-primary)] focus:ring-[var(--color-brown-primary)]"
+                  />
+                  <span class="text-sm">Próximamente</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Price Range -->
+            <div>
+              <label class="block text-sm font-medium mb-3">Precio por semana</label>
+              <div class="flex items-center gap-3">
+                <input type="number" placeholder="Min" class="w-full text-sm py-2" />
+                <span class="text-[var(--color-text-muted)]">-</span>
+                <input type="number" placeholder="Max" class="w-full text-sm py-2" />
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Products Grid -->
+        <div class="flex-1">
+          <!-- Results header -->
+          <div class="flex items-center justify-between mb-6">
+            <p class="text-[var(--color-text-secondary)]">
+              <span id="product-count">{products.length}</span> productos encontrados
+            </p>
+            <select class="w-auto text-sm py-2 px-4">
+              <option>Ordenar por relevancia</option>
+              <option>Precio: menor a mayor</option>
+              <option>Precio: mayor a menor</option>
+              <option>Nombre A-Z</option>
+            </select>
+          </div>
+
+          <!-- Products -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" id="products-grid">
+            {products.map(product => (
+              <ProductCard
+                slug={product.slug}
+                name={product.name}
+                category={product.category}
+                ageRange={product.ageRange}
+                pricePerWeek={product.pricePerWeek}
+                image={product.image}
+                available={product.available}
+              />
+            ))}
+          </div>
+
+          <!-- Empty state (hidden by default) -->
+          <div id="empty-state" class="hidden text-center py-16">
+            <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+              <i class="ph ph-magnifying-glass text-4xl text-[var(--color-brown-primary)]"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">No se encontraron productos</h3>
+            <p class="text-[var(--color-text-secondary)] mb-6">
+              Intenta modificar los filtros o buscar con otros términos
+            </p>
+            <button class="btn btn-secondary" id="reset-search">
+              Limpiar búsqueda
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    padding: 0;
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/cliente', label: 'Dashboard', icon: 'squares-four', exact: true },
+  { href: '/cliente/alquileres', label: 'Mis alquileres', icon: 'package' },
+  { href: '/cliente/programar', label: 'Programar', icon: 'calendar-check' },
+  { href: '/cliente/perfil', label: 'Mi perfil', icon: 'user' },
+];
+
+function isActive(href: string, exact: boolean = false) {
+  if (exact) {
+    return currentPath === href;
+  }
+  return currentPath.startsWith(href);
+}
+---
+
+<aside class="w-64 flex-shrink-0 hidden lg:block">
+  <div class="card p-4 sticky top-24">
+    <!-- User Info -->
+    <div class="flex items-center gap-3 p-4 mb-4 bg-[var(--color-cream)] rounded-[var(--radius-button)]">
+      <div class="w-10 h-10 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center font-semibold">
+        MG
+      </div>
+      <div>
+        <p class="font-medium text-sm">María García</p>
+        <p class="text-xs text-[var(--color-text-muted)]">CEIP Mediterrani</p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="space-y-1">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class={`flex items-center gap-3 px-4 py-3 rounded-[var(--radius-button)] transition-colors ${
+            isActive(item.href, item.exact)
+              ? 'bg-[var(--color-brown-primary)] text-white'
+              : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-cream)] hover:text-[var(--color-text-primary)]'
+          }`}
+        >
+          <i class={`ph ph-${item.icon} text-xl`}></i>
+          <span class="font-medium">{item.label}</span>
+        </a>
+      ))}
+    </nav>
+
+    <!-- Quick Actions -->
+    <div class="mt-6 pt-6 border-t border-[var(--color-brown-primary)]/10">
+      <a
+        href="/catalogo"
+        class="flex items-center gap-3 px-4 py-3 rounded-[var(--radius-button)] text-[var(--color-text-secondary)] hover:bg-[var(--color-cream)] hover:text-[var(--color-text-primary)] transition-colors"
+      >
+        <i class="ph ph-plus-circle text-xl"></i>
+        <span class="font-medium">Nuevo pedido</span>
+      </a>
+      <button
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-[var(--radius-button)] text-[var(--color-text-muted)] hover:bg-[var(--color-cream)] hover:text-[var(--color-text-primary)] transition-colors"
+      >
+        <i class="ph ph-sign-out text-xl"></i>
+        <span class="font-medium">Cerrar sesión</span>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- Mobile Navigation -->
+<div class="lg:hidden mb-6">
+  <div class="card p-2 flex overflow-x-auto gap-2">
+    {navItems.map(item => (
+      <a
+        href={item.href}
+        class={`flex items-center gap-2 px-4 py-2 rounded-[var(--radius-button)] whitespace-nowrap transition-colors ${
+          isActive(item.href, item.exact)
+            ? 'bg-[var(--color-brown-primary)] text-white'
+            : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-cream)]'
+        }`}
+      >
+        <i class={`ph ph-${item.icon}`}></i>
+        <span class="text-sm font-medium">{item.label}</span>
+      </a>
+    ))}
+  </div>
+</div>

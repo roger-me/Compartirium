@@ -1,0 +1,227 @@
+---
+import ClientLayout from '../../layouts/ClientLayout.astro';
+
+const orderHistory = [
+  { id: 'ORD-2026-0042', date: '15 ene 2026', products: 3, total: 145, status: 'active' },
+  { id: 'ORD-2025-0128', date: '10 dic 2025', products: 2, total: 85, status: 'completed' },
+  { id: 'ORD-2025-0089', date: '15 oct 2025', products: 1, total: 50, status: 'completed' },
+  { id: 'ORD-2025-0067', date: '5 sep 2025', products: 4, total: 220, status: 'completed' },
+  { id: 'ORD-2025-0034', date: '20 jun 2025', products: 2, total: 95, status: 'completed' },
+];
+---
+
+<ClientLayout title="Mi perfil">
+  <div class="mb-8">
+    <h1 class="text-3xl font-semibold mb-2">Mi perfil</h1>
+    <p class="text-[var(--color-text-secondary)]">Gestiona tu información personal y de centro</p>
+  </div>
+
+  <div class="grid lg:grid-cols-3 gap-8">
+    <!-- Main Content -->
+    <div class="lg:col-span-2 space-y-6">
+      <!-- Personal Info -->
+      <div class="card p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-semibold">Información personal</h2>
+          <button class="btn btn-secondary text-sm py-2">
+            <i class="ph ph-pencil"></i>
+            Editar
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Nombre completo</label>
+            <p class="font-medium">María García López</p>
+          </div>
+          <div>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Email</label>
+            <p class="font-medium">maria.garcia@ceipmediterrani.edu</p>
+          </div>
+          <div>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Teléfono</label>
+            <p class="font-medium">+34 612 345 678</p>
+          </div>
+          <div>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Tipo de cuenta</label>
+            <span class="badge bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]">
+              <i class="ph ph-graduation-cap"></i>
+              Escuela
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Organization Info -->
+      <div class="card p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-semibold">Datos del centro</h2>
+          <button class="btn btn-secondary text-sm py-2">
+            <i class="ph ph-pencil"></i>
+            Editar
+          </button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Nombre del centro</label>
+            <p class="font-medium">CEIP Mediterrani</p>
+          </div>
+          <div>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">CIF</label>
+            <p class="font-medium">Q0800000A</p>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Dirección</label>
+            <p class="font-medium">Carrer de l'Escola, 15</p>
+            <p class="text-[var(--color-text-secondary)]">08001 Barcelona</p>
+          </div>
+          <div>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Persona de contacto</label>
+            <p class="font-medium">María García (Coordinadora)</p>
+          </div>
+          <div>
+            <label class="block text-sm text-[var(--color-text-muted)] mb-1">Horario de recepción</label>
+            <p class="font-medium">L-V 9:00-14:00</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order History -->
+      <div class="card p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-semibold">Historial de pedidos</h2>
+          <button class="btn btn-secondary text-sm py-2">
+            <i class="ph ph-download-simple"></i>
+            Exportar
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="text-left text-sm text-[var(--color-text-muted)] border-b border-[var(--color-brown-primary)]/10">
+                <th class="pb-3 font-medium">Pedido</th>
+                <th class="pb-3 font-medium">Fecha</th>
+                <th class="pb-3 font-medium">Productos</th>
+                <th class="pb-3 font-medium">Total</th>
+                <th class="pb-3 font-medium">Estado</th>
+                <th class="pb-3 font-medium"></th>
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              {orderHistory.map(order => (
+                <tr class="border-b border-[var(--color-brown-primary)]/5">
+                  <td class="py-4 font-medium">{order.id}</td>
+                  <td class="py-4 text-[var(--color-text-secondary)]">{order.date}</td>
+                  <td class="py-4 text-[var(--color-text-secondary)]">{order.products} productos</td>
+                  <td class="py-4 font-medium">{order.total}€</td>
+                  <td class="py-4">
+                    <span class={`badge ${order.status === 'active' ? 'badge-success' : 'bg-gray-100 text-gray-600'}`}>
+                      {order.status === 'active' ? 'Activo' : 'Completado'}
+                    </span>
+                  </td>
+                  <td class="py-4">
+                    <button class="text-[var(--color-brown-primary)] hover:underline">
+                      Ver detalle
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="space-y-6">
+      <!-- Profile Card -->
+      <div class="card p-6 text-center">
+        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
+          MG
+        </div>
+        <h3 class="font-semibold text-lg">María García</h3>
+        <p class="text-[var(--color-text-muted)] text-sm mb-4">CEIP Mediterrani</p>
+        <div class="flex justify-center gap-2">
+          <span class="badge bg-[var(--color-success)]/10 text-[var(--color-success)]">
+            <i class="ph ph-check-circle"></i>
+            Verificado
+          </span>
+          <span class="badge bg-[var(--color-brown-primary)]/10 text-[var(--color-brown-primary)]">
+            Admin
+          </span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="card p-6">
+        <h3 class="font-semibold mb-4">Estadísticas</h3>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[var(--color-text-secondary)]">Total pedidos</span>
+            <span class="font-semibold">8</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-[var(--color-text-secondary)]">Alquileres activos</span>
+            <span class="font-semibold">3</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-[var(--color-text-secondary)]">Cliente desde</span>
+            <span class="font-semibold">Jun 2025</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-[var(--color-text-secondary)]">Ahorro acumulado</span>
+            <span class="font-semibold text-[var(--color-success)]">~320€</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Billing -->
+      <div class="card p-6">
+        <h3 class="font-semibold mb-4">Facturación</h3>
+        <div class="space-y-3">
+          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors">
+            <div class="flex items-center gap-3">
+              <i class="ph ph-file-pdf text-[var(--color-brown-primary)]"></i>
+              <span class="text-sm">Factura Ene 2026</span>
+            </div>
+            <i class="ph ph-download-simple text-[var(--color-text-muted)]"></i>
+          </a>
+          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors">
+            <div class="flex items-center gap-3">
+              <i class="ph ph-file-pdf text-[var(--color-brown-primary)]"></i>
+              <span class="text-sm">Factura Dic 2025</span>
+            </div>
+            <i class="ph ph-download-simple text-[var(--color-text-muted)]"></i>
+          </a>
+          <a href="#" class="flex items-center justify-between p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors">
+            <div class="flex items-center gap-3">
+              <i class="ph ph-file-pdf text-[var(--color-brown-primary)]"></i>
+              <span class="text-sm">Factura Oct 2025</span>
+            </div>
+            <i class="ph ph-download-simple text-[var(--color-text-muted)]"></i>
+          </a>
+        </div>
+        <button class="btn btn-secondary w-full mt-4 text-sm">
+          Ver todas las facturas
+        </button>
+      </div>
+
+      <!-- Security -->
+      <div class="card p-6">
+        <h3 class="font-semibold mb-4">Seguridad</h3>
+        <div class="space-y-3">
+          <button class="w-full flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors text-left">
+            <i class="ph ph-key text-[var(--color-brown-primary)]"></i>
+            <span class="text-sm">Cambiar contraseña</span>
+          </button>
+          <button class="w-full flex items-center gap-3 p-3 bg-[var(--color-cream)] rounded-[var(--radius-button)] hover:bg-[var(--color-cream)]/70 transition-colors text-left">
+            <i class="ph ph-bell text-[var(--color-brown-primary)]"></i>
+            <span class="text-sm">Notificaciones</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ClientLayout>

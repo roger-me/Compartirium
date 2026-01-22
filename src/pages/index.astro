@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products, categories } from '../data/products';
+
+const featuredProducts = products.filter(p => p.available).slice(0, 4);
+---
+
+<Layout title="Inicio">
+  <!-- Hero Section -->
+  <section class="py-20 md:py-32">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-[var(--color-text-primary)] mb-6 leading-tight">
+          Material educativo en alquiler.
+          <span class="text-[var(--color-brown-primary)]">Sostenible, asequible, circular.</span>
+        </h1>
+        <p class="text-xl text-[var(--color-text-secondary)] mb-10 max-w-2xl mx-auto">
+          Accede a libros, juegos y recursos para tu aula o familia sin comprar.
+          Alquila por semanas, meses o todo el curso.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/catalogo" class="btn btn-primary text-lg px-8 py-4">
+            <i class="ph ph-magnifying-glass"></i>
+            Explorar catálogo
+          </a>
+          <a href="/como-funciona" class="btn btn-secondary text-lg px-8 py-4">
+            <i class="ph ph-play-circle"></i>
+            Cómo funciona
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="py-16 bg-[var(--color-cream-light)]">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-semibold mb-4">Explora por categoría</h2>
+        <p class="text-[var(--color-text-secondary)]">Encuentra el material perfecto para cada necesidad educativa</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {categories.map(category => (
+          <a
+            href={`/catalogo?categoria=${category.slug}`}
+            class="card p-6 text-center hover:-translate-y-1 transition-transform"
+          >
+            <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+              <i class={`ph ph-${category.icon} text-2xl text-[var(--color-brown-primary)]`}></i>
+            </div>
+            <h3 class="font-medium text-sm">{category.name}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="py-16">
+    <div class="container">
+      <div class="flex justify-between items-end mb-10">
+        <div>
+          <h2 class="text-3xl font-semibold mb-2">Productos destacados</h2>
+          <p class="text-[var(--color-text-secondary)]">Los más solicitados por escuelas y familias</p>
+        </div>
+        <a href="/catalogo" class="btn btn-secondary hidden md:flex">
+          Ver todo
+          <i class="ph ph-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {featuredProducts.map(product => (
+          <ProductCard
+            slug={product.slug}
+            name={product.name}
+            category={product.category}
+            ageRange={product.ageRange}
+            pricePerWeek={product.pricePerWeek}
+            image={product.image}
+            available={product.available}
+          />
+        ))}
+      </div>
+
+      <div class="mt-8 text-center md:hidden">
+        <a href="/catalogo" class="btn btn-secondary">
+          Ver todo el catálogo
+          <i class="ph ph-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section class="py-16 bg-[var(--color-cream-light)]">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-semibold mb-4">Cómo funciona</h2>
+        <p class="text-[var(--color-text-secondary)]">En 4 sencillos pasos tienes tu material listo</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
+            1
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Explora el catálogo</h3>
+          <p class="text-[var(--color-text-secondary)] text-sm">
+            Encuentra libros, juegos, material didáctico y mucho más filtrado por edad y necesidad.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
+            2
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Elige el periodo</h3>
+          <p class="text-[var(--color-text-secondary)] text-sm">
+            Alquila por semanas, meses o programa todo el curso con nuestro planificador.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
+            3
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Recibe en tu centro</h3>
+          <p class="text-[var(--color-text-secondary)] text-sm">
+            Te lo llevamos al colegio, casa o punto de recogida que prefieras.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)] text-white flex items-center justify-center text-2xl font-semibold">
+            4
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Devuelve y repite</h3>
+          <p class="text-[var(--color-text-secondary)] text-sm">
+            Cuando termines, lo recogemos. El material vuelve a circular para otros.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/como-funciona" class="btn btn-secondary">
+          Más información
+          <i class="ph ph-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats / Value Props -->
+  <section class="py-16">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card p-8 text-center">
+          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-success)]/10 flex items-center justify-center">
+            <i class="ph ph-leaf text-2xl text-[var(--color-success)]"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-2">+500kg</h3>
+          <p class="text-[var(--color-text-secondary)]">de material reutilizado al año</p>
+        </div>
+
+        <div class="card p-8 text-center">
+          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-brown-primary)]/10 flex items-center justify-center">
+            <i class="ph ph-graduation-cap text-2xl text-[var(--color-brown-primary)]"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-2">+50</h3>
+          <p class="text-[var(--color-text-secondary)]">escuelas confían en nosotros</p>
+        </div>
+
+        <div class="card p-8 text-center">
+          <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[var(--color-warning)]/10 flex items-center justify-center">
+            <i class="ph ph-hand-heart text-2xl text-[var(--color-warning)]"></i>
+          </div>
+          <h3 class="text-2xl font-semibold mb-2">+200</h3>
+          <p class="text-[var(--color-text-secondary)]">familias ahorran cada mes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-[var(--color-brown-primary)]">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center text-white">
+        <h2 class="text-3xl font-semibold mb-4">¿Listo para empezar?</h2>
+        <p class="text-white/80 mb-8">
+          Crea tu cuenta gratis y accede a todo nuestro catálogo.
+          Sin compromiso, sin sorpresas.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/cliente" class="btn bg-white text-[var(--color-brown-primary)] hover:bg-white/90">
+            <i class="ph ph-user-plus"></i>
+            Crear cuenta
+          </a>
+          <a href="/catalogo" class="btn border-white text-white hover:bg-white/10">
+            <i class="ph ph-magnifying-glass"></i>
+            Ver catálogo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
