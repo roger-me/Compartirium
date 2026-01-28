@@ -149,6 +149,18 @@ export const ui = {
     'quienesSomos.contacto.telefono': 'Telèfon',
     'quienesSomos.contacto.direccion': 'Adreça',
 
+    // Team
+    'quienesSomos.equipo.title': "L'equip darrere de Compartirium",
+    'quienesSomos.equipo.subtitle': 'Quatre estudiants amb una visió compartida: fer que l\'educació sigui més accessible i sostenible.',
+    'quienesSomos.equipo.albert.name': 'Albert',
+    'quienesSomos.equipo.albert.desc': 'La seva creativitat aporta idees fresques al projecte. Amb tranquil·litat i paciència, troba solucions als reptes més complexos.',
+    'quienesSomos.equipo.nil.name': 'Nil',
+    'quienesSomos.equipo.nil.desc': 'Disciplinat i treballador, assegura que cada detall estigui cuidat. El seu perfeccionisme garanteix la qualitat de tot el que fem.',
+    'quienesSomos.equipo.nuria.name': 'Núria',
+    'quienesSomos.equipo.nuria.desc': 'Combina creativitat i tranquil·litat amb un optimisme contagiós que manté l\'equip motivat en tot moment.',
+    'quienesSomos.equipo.laia.name': 'Laia',
+    'quienesSomos.equipo.laia.desc': 'La seva iniciativa i ordre impulsen el projecte. Amb un gran sentit de l\'estètica i compromís, lidera amb l\'exemple.',
+
     // Catalogo
     'catalogo.title': 'Catàleg',
     'catalogo.hero.title': 'Catàleg de material educatiu',
@@ -371,6 +383,18 @@ export const ui = {
     'quienesSomos.contacto.email': 'Email',
     'quienesSomos.contacto.telefono': 'Teléfono',
     'quienesSomos.contacto.direccion': 'Dirección',
+
+    // Team
+    'quienesSomos.equipo.title': 'El equipo detrás de Compartirium',
+    'quienesSomos.equipo.subtitle': 'Cuatro estudiantes con una visión compartida: hacer que la educación sea más accesible y sostenible.',
+    'quienesSomos.equipo.albert.name': 'Albert',
+    'quienesSomos.equipo.albert.desc': 'Su creatividad aporta ideas frescas al proyecto. Con tranquilidad y paciencia, encuentra soluciones a los retos más complejos.',
+    'quienesSomos.equipo.nil.name': 'Nil',
+    'quienesSomos.equipo.nil.desc': 'Disciplinado y trabajador, asegura que cada detalle esté cuidado. Su perfeccionismo garantiza la calidad de todo lo que hacemos.',
+    'quienesSomos.equipo.nuria.name': 'Núria',
+    'quienesSomos.equipo.nuria.desc': 'Combina creatividad y tranquilidad con un optimismo contagioso que mantiene al equipo motivado en todo momento.',
+    'quienesSomos.equipo.laia.name': 'Laia',
+    'quienesSomos.equipo.laia.desc': 'Su iniciativa y orden impulsan el proyecto. Con un gran sentido de la estética y compromiso, lidera con el ejemplo.',
 
     // Catalogo
     'catalogo.title': 'Catálogo',

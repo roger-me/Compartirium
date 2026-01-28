@@ -49,22 +49,22 @@ const alternateUrl = getLocalizedPath(currentPathWithoutLang, alternateLang);
             ))}
           </div>
 
-          <!-- CTA Button -->
-          <div class="flex items-center gap-3">
-            <a href={getLocalizedPath('cliente', lang)} class="hidden md:inline-flex btn btn-primary">
+          <!-- Desktop CTA Button (hidden on mobile) -->
+          <div class="hidden md:block">
+            <a href={getLocalizedPath('cliente', lang)} class="btn btn-primary">
               <i class="ph ph-user"></i>
               {t('nav.acceder')}
             </a>
-
-            <!-- Mobile Menu Button -->
-            <button
-              id="mobile-menu-btn"
-              class="md:hidden p-2 text-[var(--color-text-primary)]"
-              aria-label="Menú"
-            >
-              <i class="ph ph-list text-2xl"></i>
-            </button>
           </div>
+
+          <!-- Mobile Menu Button -->
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden p-2 text-[var(--color-text-primary)]"
+            aria-label="Menú"
+          >
+            <i class="ph ph-list text-2xl"></i>
+          </button>
         </nav>
 
         <!-- Mobile Navigation -->
